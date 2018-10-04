@@ -1,4 +1,4 @@
-\documentclass[]{elsarticle}
+\documentclass[review]{elsarticle}
 
 \usepackage{lineno,hyperref}
 \modulolinenumbers[5]
@@ -136,13 +136,13 @@
   This paper presents an exhaustive study on the arrivals process at eight major European airports. Using inbound traffic data, we define, compare, and contrast a data-driven Poisson and \ac{PSRA} point process on their ability to predict future demand.
 %   Although, there is sufficient evidence that the inter-arrivals might follow an exponential distribution, this finding does not directly translate to evidence that the arrivals stream is Poisson.
 %   The main reason is that finite-capacity constraints impose a correlation structure to the arrivals stream, which a Poisson model cannot capture.
-As part of this analysis, we show the weaknesses and somehow the difficulties of using a Poisson process to model with good approximation the arrivals stream. On the other hand, our innovative and simple data-driven \ac{PSRA} model, captures and predicts with higher accuracy the main properties of the typical arrivals stream.
+As part of this analysis, we show both weaknesses and difficulties of using a Poisson process to model with good approximation the arrivals stream. On the other hand, our novel and simple data-driven \ac{PSRA} model, captures and predicts with higher accuracy the main properties of the typical arrivals stream.
 These results have important implication on modeling and simulation-based analyses of the inbound traffic aiming to improve the use of available capacity thus reducing air traffic delays. In a nutshell, the results lead to the conclusion that, whenever possible, \ac{PSRA} should be preferred over any process in the family of Poisson, as it provides more accurate air traffic predictions.
 \end{abstract}
 
 
 \begin{keyword}
-Transportation \sep Air traffic \sep Stochastic optimization \sep Demand prediction \sep Data-driven modeling
+Transportation \sep Air traffic \sep Demand prediction \sep Data-driven modeling
 \MSC[2010] 90B06 \sep  62P30
 \end{keyword}
 
@@ -173,29 +173,34 @@ Starting from the pioneering work of~\citet{Blum1959}, airport operations has at
 Many quantitative methods have been developed to understand the various causes of congestion.
 These methods try to ameliorate the level of congestion by detecting possible actions for improving the use of capacity and reducing delays.
 In particular, a great amount of work has been devoted to study the arrivals process at airports and the corresponding queues.
-Given the nature of the phenomenon, most of these studies rely on either queuing theory or simulation models. To  estimate congestion with accuracy, models should include both \emph{i}) fluctuations of the arrival demand over time due to hub-and-spoke operations carried out at major airports and \emph{ii}) randomness affecting the arrivals. \citeauthor{Koop1972} assumed that the statistics of arrivals follow a Poisson law, but with an arrival rate that is a strongly-varying function of time according to quantities actually observed at airports.
+Given the nature of the phenomenon, most of these studies rely on either queuing theory or simulation models. To  estimate congestion with accuracy, models should include both \emph{i}) fluctuations in the inbound demand over time due to hub-and-spoke operations carried out at major airports and \emph{ii}) randomness affecting the arrivals. \citeauthor{Koop1972} assumed that the statistics of arrivals follow a Poisson law, but with an arrival rate that is a strongly-varying function of time according to quantities actually observed at airports.
 According to~\citet{HO1975}, the assumption of Poisson arrivals for airport demand has two very appealing properties:
 \emph{i}) it is mathematically tractable and is consistent with observations at major airports, and
 \emph{ii}) it has been extensively used in the transportation literature.
 
-Poisson arrivals have been assumed to study the arrival stream at several airports:  J.F. Kennedy and La Guardia~\citep{Koop1972}, Toronto Person \citep{Bookbinder1986}, and Boston Logan~\citep{HO1975} among others. Yet, this assumption has been corroborated only in more recent times~\citep{willemain2004statistical}.
-In that paper, the authors examined data on arrivals to nine major US airports during December 2003 for evidence of exponentiality in the distribution of the \ac{ETA} as estimated when the aircraft were 100 miles from their destinations under the assumption that the arrival rates changes are relatively slow over time. The analysis confirmed the nearly-exponential character of the intervals between projected \acp{ETA}.
+Poisson arrivals have been assumed to study the arrival stream at several airports:  J.F. Kennedy and La Guardia~\citep{Koop1972}, Toronto Pearson \citep{Bookbinder1986}, and Boston Logan~\citep{HO1975} among others. Yet, this assumption has been corroborated only in more recent times~\citep{willemain2004statistical}.
+In that paper, the authors examined data on arrivals to nine major US airports during December 2003 for evidence of exponentiality in the distribution of the \ac{ETA} as estimated when the aircraft were 100 miles from their destinations under the assumption that the arrival-rate changes are relatively slow over time. The analysis confirmed the nearly-exponential character of the intervals between projected \acp{ETA}.
 However, there are some inherent issues with Poisson arrivals.
-First, the Poisson process --by definition-- is not capable of capturing any correlation between arrivals at consecutive time periods.
+First, the Poisson process --by definition-- is not capable of capturing any correlation between arrivals in consecutive time periods.
 This leads to an overestimation of the queue length presumably because the uncaptured correlation is negative~\citep{caccavale2014model}.
 The overestimation of the queue length has a strong impact on the determination of control actions (decisions) to use efficiently the available capacity: models adopting Poisson processes may overestimate congestion and yield too \emph{conservative} decisions.
 Second, if we model the arrival stream as a non-homogeneous Poisson process, a possibly large number of parameters has to be estimated. %, in agreement with Koopman's approach.
-Third, the use of projected arrivals~\citep{willemain2004statistical} might not be adequate in a European context, where the arrival rates at several major European airports tend to change \emph{rather fast}, as highlighted by the demand histograms of Figure~\ref{fig:AvgArrivals} in Section~\ref{sec:serial_corr}.
+Third, the use of projected arrivals~\citep{willemain2004statistical} might not be adequate in a European context, where the arrival rates at several major European airports tend to change \emph{rather fast}, as highlighted by the average-demand curves of Figure~\ref{fig:AvgArrivals} in Section~\ref{sec:serial_corr}.
 
 To overcome these issues,~\citet{guadagni2011queueing} have recently proposed to model the arrival stream at airports with a Pre-Scheduled Random Arrivals (\ac{PSRA}) process, which is obtained from a deterministic schedule by superimposing \ac{IID} random delays.
 The list of actual arrival time is the result of \emph{mixing-up} the fixed schedule by the addition of random perturbations.
-The resulting process --which is known since the 60's~\citep{Kendall1964}-- was able to provide very good fit with real data from London Heathrow airport~\citep{caccavale2014model}.
+The resulting process --which is known since the 60's~\citep{Kendall1964}-- was able to provide very good fit of the simulated congestion with that obtained from arrivals at London Heathrow airport~\citep{caccavale2014model}.
 Further, the \ac{PSRA} process is easy to study numerically, and some significant analytical results have been recently achieved by~\citet{lancia2013advances}.
 \citet{nikoleris2012queueing} used \ac{PSRA} to develop a single-server queuing model for trajectory-based aircraft operations that accounts explicitly for varying levels of imprecision in meeting prescribed times of arrival at airspace fixes.
 With the purpose of gaining insight into the generation of the observed delays and balancing congestion delays more efficiently between ground and en-route, \citet{gwiggner2014data} compared two single-server queuing models (\(\cdot/D/1\) and \(\cdot/G/1\) in Kendall's notation) using both Poisson and \ac{PSRA} as arrival processes.
 From the analysis on the east-bound arrivals at Tokyo International Airport, they concluded that \ac{PSRA} and a Poisson stream behave equivalently during moderate congestion but differ substantially during very high congestion.
-However, this comparison is indirect because based on a queue.
+However, this comparison is indirect because it was based on a queue.
 Analysis of radar data gave in fact both arguments in favor and against the hypothesis of Poisson arrivals.
+
+With respect to the work of~\citep{caccavale2014model} and~\citet{gwiggner2014data}, here we focus on the \emph{direct} comparison of (in-homogeneous) Poisson arrivals and PSRA, and not through the output of a queue model.
+This is a fundamental difference and a strong element of novelty with respect to the existing literature.
+Further,~\citet{gwiggner2014data} tested radar data against the null hypothesis of exponential inter-arrivals without checking whether arrivals are correlated or not.
+A thorough analysis of serial correlations in the arrival stream is in fact another important contribution of this paper.
 
 % In this paper, we propose to compare \ac{PSRA} and Poisson on their capability of predicting future demand. Shifting the focus on demand-prediction accuracy offers more appropriate metrics for comparing those models in a stochastic optimization framework.
 In this paper, we present data-driven models for both \ac{PSRA} and Poisson  and compare their performances in predicting future demand.
@@ -211,14 +216,12 @@ Inter-arrival data seemingly suggest that the underlying arrival stream is Poiss
 Nevertheless, using such a process to model the arrival stream with good approximation presents some weaknesses and difficulties, which we describe in detail in the following sections.
 On the other hand, \ac{PSRA} combine a simple formulation with good predictive qualities of the inbound arrival stream.
 The results presented below are relevant to analyses and simulation-based studies of the air traffic system.
-Indeed, (fast-time) simulation is one of the most common tools used by practitioners and experts of Air Navigation Service Providers and Network Manager to detect fine-tuned control actions to improve the performances of the air traffic system and to alleviate congestion especially at airports.
+Indeed, (fast-time) simulation is one of the most common tools used by practitioners and experts of Air Navigation Service Providers and Network Manager to determine fine-tuned control actions to improve the performances of the air traffic system and to alleviate congestion especially at airports.
 The approach described herein will allow more accurate analysis, and therefore better decision-making.
-By product, it will also contribute to the improvement of the ATM-system efficiency: even a small reduction in terms of average ASMA time can have a huge impact in terms of fuel costs, greenhouse emissions, air traffic controllers' workload and safety.
+As a consequence, it will also contribute to the improvement of the ATM-system efficiency: even a small reduction in terms of average ASMA time can have a huge impact in terms of fuel costs, greenhouse emissions, air traffic controllers' workload and safety.
 
-Summarizing, the contribution of this paper is three-fold:
-\emph{i}) verify the results of~\cite{willemain2004statistical} in a European context, showing at the same time that this finding does not directly support the assumption of Poisson arrivals due to serial correlations in the arrival stream;
-\emph{ii}) propose an innovative data-driven approach to the modeling of the inbound stream, showing all procedural details to define a non-homogeneous Poisson process and \ac{PSRA};
-\emph{iii}) compare the processes obtained this way on the task of predicting future demand.
+Summarizing, the contribution of this paper is three-fold.
+First, we verify that interarrivals seemingly follow an exponential distribution, translating (part of) the results of~\cite{willemain2004statistical} and~\citep{gwiggner2014data} to a European context; next, we explore serial correlations in the arrival stream and show how this finding does not directly support the assumption of (in-homogeneous) Poisson arrivals. Second, we propose an innovative data-driven approach to the modeling of the inbound stream, showing all procedural details to define a non-homogeneous Poisson process and \ac{PSRA}. Third, we compare the processes obtained this way on the task of predicting future demand.
 
 The remainder of this paper is organized as follows.
 In Section~\ref{sec:data_methods}, we describe the dataset and the data-analysis methodology used for this study.
@@ -279,7 +282,7 @@ The presence of ties in the sample is overcome by using the discrete version of~
     \label{eq:DWeibullPMF}
 \end{equation}
 where \(q\) plays now the role of the \emph{scale parameter} \(\lambda\) in~\eqref{eq:WeibullPDF}.
-When \(\beta = 1\) then~\eqref{eq:WeibullPDF} and~\eqref{eq:DWeibullPMF} become respectively an exponential distribution and a geometric \ac{PMF}.
+When \(\beta = 1\),~\eqref{eq:WeibullPDF} and~\eqref{eq:DWeibullPMF} become respectively an exponential distribution and a geometric \ac{PMF}.
 QQ-plots are drawn for three different time intervals, namely, 08:00--09:30, 12:00--13:30, and 18:00--19:30, local time; these are meant to capture different operational phases of the airports considered in this study, especially for those hosting hub-and-spoke operations.
 We use the Kolmogorov-Smirnov test~\citep{taylor2011nonparam} to evaluate goodness of fit.
 
@@ -287,13 +290,13 @@ We use the Kolmogorov-Smirnov test~\citep{taylor2011nonparam} to evaluate goodne
 
 Typical characteristics of the inbound stream are assessed with an exploratory analysis of both average properties and serial correlations of the demand; the latter is a key point that can motivate the use the \ac{PSRA} process.
 Those characteristics of the demand are investigated by aggregating the arrivals \ac{TS} by intervals of ten minutes.
-The reason for choosing an interval length of ten minutes is two-fold.
+The reason for choosing an interval of ten minutes is two-fold.
 On the one hand, it is not too large to overlook changes in the regime of the underlying (stochastic) arrival process.
 On the other, it is not too small to capture noisy variations of the demand that would challenge the interpretability of the results.
 
 Average demand is estimated per interval of ten minutes, yielding a daily average profile of the demand; typical fluctuations in the daily average are described by 95\% point-wise confidence intervals.
 We look for evidence of serial correlations in the arrival stream by computing the \ac{ACF} on the premise that the capacity of both en-route sectors (airspace) and airports impose constraints (dependencies) on the number of arrivals in consecutive time intervals.
-Stationarity of the arrivals \acs{TS} is achieved by taking first-order differences and then checked in a 24-hour window by the augmented Dickey-Fuller test~\citep{fuller2009introduction,seabold2010statsmodels}.
+Stationarity of the arrivals \acs{TS} is verified by taking first-order differences and then performing the augmented Dickey-Fuller test~\citep{fuller2009introduction,seabold2010statsmodels} in a 24-hour window.
 Further, we explore periodicity of the demand using a continuous wavelet transform based on the Ricker wavelet~\citep{ricker}.
 We conclude the descriptive analysis of the arrival stream by computing demand correlations over consecutive time intervals.
 
@@ -348,9 +351,11 @@ For \ac{PSRA}, we simulate the process
 t_i = t^{M1}_i + \xi_i \,,
 \end{equation}
 where \(t^{M1}_i\) is the expected (aka regulated) arrival time at 40 NM, \(\xi_i\) is a delay that is generated from a regression model for \(\{t^{M3}_i - t^{M1}_i\}_i\), and \(t^{M3}_i\) is the observed arrival time at 40 NM.
-The model for the delays \(\xi_i\)'s is obtained by training an \(\varepsilon\)-support vector regression model~\cite{cristianini2000introduction} on the following features: flight origin (national, continental, or intercontinental), arrival time according to the M1 flight plan, and day of the week.
+The model for the delays \(\xi_i\)'s is obtained by training an \(\varepsilon\)-support vector regression model~\citep{cristianini2000introduction} on the following features: flight origin (national, continental, or intercontinental), arrival time according to the M1 flight plan, and day of the week.
 The last two features are encoded as two-dimensional cyclic variables using sine/cosine transformations.
-An inner cross-validation with consecutive monthly split is used to search the optimal value of the parameters \(C\) and \(\varepsilon\) on a logarithmic grid:
+
+Cross-validation is used for both tuning the hyperparameters of the support vector machine and for assessing the model performance. The recommendation in this case is use two rounds of cross-validation~\citep{cawley2010over}, respectively called inner and outer, on different train-test splits of the dataset. Since we are dealing with a TS, we split the dataset in k parts and then form k-1 train sets by taking the first j parts and we use the (j+1)th as the test set.
+An inner cross-validation with splits of two weeks each is used to search the optimal value of the parameters \(C\) and \(\varepsilon\) on a logarithmic grid:
 \(\varepsilon\) defines a margin of tolerance within which no penalty (\(C\)) is associated in the training loss function.
 The limited number of features used and its impact on this research are discussed in~Section~\ref{sec:analysis}.
 The simulation procedure is outlined in Algorithm~\ref{Alg:PSRA}.
@@ -374,7 +379,7 @@ The simulation procedure is outlined in Algorithm~\ref{Alg:PSRA}.
 \subsection{Prediction capabilities of Poisson and \acs{PSRA}}\label{sec:dm_comparison}
 
 \ac{PSRA} and Poisson stream are compared on the capability of predicting the average weekly demand in the last week of the data set and the daily demand in the last day.
-An outer cross-validation with consecutive weekly splits is used to compare true demand with that predicted by model~\ref{eq:psra-like}.
+An outer cross-validation with splits of one week each is used to compare true demand with that predicted by model~\eqref{eq:psra-like}.
 Cross-validation of the Poisson model is not possible, because our formulation assumes that the intensity \(\lambda(t)\) is 24-hour periodic.
 Evidence supporting this assumption is given in Section~\ref{sec:serial_corr}.
 Further, this assumption has the desirable property of simplifying the model formulation.
@@ -697,7 +702,7 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
   On the other hand, the selected time windows often span moments of lower and higher demand, so that a better fit might be probably obtained by letting the parameter $\beta$ vary over time.
 
   The analysis of the demand correlations in Figure~\ref{fig:correlations_true} suggests that a process with independent increments (\eg{} a time-dependent Poisson) might be not realistic anyway.
-  Nevertheless, Poisson processes are a popular choice for modeling inbound air traffic~\citet{gwiggner2014data}.
+  Nevertheless, Poisson processes are a popular choice for modeling inbound air traffic~\citep{gwiggner2014data}.
   Thus, we proposed an innovative, data-driven approach to the modeling of a non-homogeneous Poisson process by use of \PELT{} (a change-point detection algorithm) and \DBSCAN{} (clustering).
   Poisson arrivals defined this way were contrasted with a \ac{PSRA} point process, where the observed arrival time arises as the sum of the last-agreed arrival time and a random fluctuations.
   A parametric distribution is the typical modeling solution for the the delays \(\xi_i\) in~\eqref{eq:psra-like}, but we introduced an element of novelty by adopting also for \ac{PSRA} a data-driven approach.
