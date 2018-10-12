@@ -256,9 +256,13 @@ Table~\ref{tab:flights_count} displays the total count of inbound flights in the
     \end{tabular}
 \end{table}
 
-We queried the \ac{DDR} to extract both \emph{M1 and M3 flight plans}, respectively the last flight plan agreed with \textsc{Network Manager} (\textsc{Eurocontrol}) and the flight trajectory actually flown.
+\textcolor{blue}{
+We queried the \ac{DDR} to extract the time each aircraft entered a cylinder of 40 NM (Nautical Mile) around the airport of destination. More specifically, we retrieved both the expected \(t^{M1}\) and the actual \(t^{M3}\) times. The former from
+the last flight plan agreed with \textsc{Network Manager} (\textsc{Eurocontrol}) and the latter from the flight trajectory actually flown.}
+%
+\textcolor{green}{We queried the \ac{DDR} to extract both \emph{M1 and M3 flight plans}, respectively the last flight plan agreed with \textsc{Network Manager} (\textsc{Eurocontrol}) and the flight trajectory actually flown.
 For M1 we use the adjective \emph{regulated} while for M3 we use \emph{observed}.
-From M1 and M3 flight plans, we obtain \(t^{M1}\) and \(t^{M3}\), \ie{} the time at which the aircraft enter a cylinder of 40 NM (Nautical Mile) around the airport according to the corresponding flight plan.
+From M1 and M3 flight plans, we obtain \(t^{M1}\) and \(t^{M3}\), \ie{} the time at which the aircraft enter a cylinder of 40 NM (Nautical Mile) around the airport according to the corresponding flight plan.}
 This procedure is in agreement with the computation of the ASMA times \citep{ASMA-def}.
 Indeed, the passage time at 40 NM is a proxy for the time when the flight starts the approach phase and is handed over to the Terminal Control.
 This time could have been measured with more accuracy by considering the instantaneous latitude and longitude of each aircraft as reported by the \ac{DDR}, yet the general data analysis methodology and results illustrated hereafter remain valid.
