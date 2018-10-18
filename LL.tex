@@ -76,9 +76,26 @@
 \usepackage[T1]{fontenc}
 % \usepackage{hyperref}
 \usepackage{xr}
+% Enable xr on overleaf
+\makeatletter
+\newcommand*{\addFileDependency}[1]{% argument=file name and extension
+  \typeout{(#1)}
+  \@addtofilelist{#1}
+  \IfFileExists{#1}{}{\typeout{No file #1.}}
+}
+\makeatother
+
+\newcommand*{\myexternaldocument}[1]{%
+    \externaldocument{#1}%
+    \addFileDependency{#1.tex}%
+    \addFileDependency{#1.aux}%
+}
 \externaldocument[A-]{LL-A}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{hyperref}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 \journal{European Journal of Operational Research}
 
@@ -137,7 +154,7 @@
 %   Although, there is sufficient evidence that the inter-arrivals might follow an exponential distribution, this finding does not directly translate to evidence that the arrivals stream is Poisson.
 %   The main reason is that finite-capacity constraints impose a correlation structure to the arrivals stream, which a Poisson model cannot capture.
 As part of this analysis, we show both weaknesses and difficulties of using a non-homogeneous Poisson process to model with good approximation the arrivals stream. On the other hand, our novel and simple data-driven \ac{PSRA} model, captures and predicts with higher accuracy the main properties of the typical arrivals stream.
-These results have important implication on modeling and simulation-based analyses of the inbound traffic aiming to improve the use of available capacity thus reducing air traffic delays. In a nutshell, the results lead to the conclusion that, whenever possible, \ac{PSRA} should be preferred over any process in the family of Poisson, as it provides more accurate air traffic predictions.
+These results have important implication on modeling and simulation-based analyses of the inbound traffic aiming to improve the use of available capacity thus reducing air traffic delays. In a nutshell, the results lead to the conclusion that, in the European context, the \ac{PSRA} provides more accurate predictions.
 \end{abstract}
 
 
@@ -158,7 +175,7 @@ Over the years, air traffic demand increased at a much faster pace compared to t
 Although in the last decade we have witnessed a mitigation of congestion phenomena --air traffic demand has not recovered yet since the 2008 economic crisis-- the latest air traffic statistics published by \textsc{Eurocontrol} show a significant deterioration of on-time performance in the \acl{ECAC} area.
 The average delay per flight is at its highest in the last 10 years~\citep{coda2016}.
 To get a good grasp of the level of congestion, 7,167 flights were canceled and 107,426  delayed in Europe between November 28 and December 27, 2016.
-The situation was even worse in the US, as the statistics of canceled and delayed flights showed double digits~(\citeauthor{flightstats}).
+The situation was even worse in the US, as the number of canceled and delayed flights were twice as many as the figures recorded in Europe~(\citeauthor{flightstats}).
 However, for the sake of completeness, the number of controlled flights in the US is much larger: 15.3 million  in the US versus 9.9 million flights in Europe in 2015~\citep{EUCTRL-FAA2015}.
 
 Airports are the most relevant bottlenecks of the air traffic system. The \ac{ASMA} additional time --which is a proxy for the average arrival runway queuing time of the inbound traffic flow-- during times when the airport is experiencing high demand, is an indicator of airport congestion~\citep{ASMA-def}. In 2015, the average \acs{ASMA} additional time at the top 30 European airports amounted to  2.27 minutes per arrival, increasing by about 18\% with respect to the previous year.
@@ -179,13 +196,14 @@ According to~\citet{HO1975}, the assumption of Poisson arrivals for airport dema
 \emph{ii}) it has been extensively used in the transportation literature.
 
 Poisson arrivals have been assumed to study the arrival stream at several airports:  J.F. Kennedy and La Guardia~\citep{Koop1972}, Toronto Pearson \citep{Bookbinder1986}, and Boston Logan~\citep{HO1975} among others. Yet, this assumption has been corroborated only in more recent times~\citep{willemain2004statistical}.
-In that paper, the authors examined data on arrivals to nine major US airports during December 2003 for evidence of exponentiality in the distribution of the \ac{ETA} as estimated when the aircraft were 100 miles from their destinations under the assumption that the arrival-rate changes are relatively slow over time. The analysis confirmed the nearly-exponential character of the intervals between projected \acp{ETA}.
+In that paper, the authors examined data on arrivals to nine major US airports during December 2003 for evidence of exponentiality in the distribution of the interval between two projected arrival times, \ie{} the arrival times computed by the Enhanced Transportation Management System algorithm in use by the Federal Aviation Administration when the aircraft were 100 miles from their destinations. \citet{willemain2004statistical} performed the analysis of these intervals under the assumption that they ``are independent samples from a Weibull distribution with a fixed shape parameter (equal to 1 for an exponential distribution) and a slowly varying scale parameter.''
+The results confirmed the near-exponentiality of the inter-arrivals, therefore supporting the idea of describing arrivals through a non-homogeneous Poisson process.
 However, there are some inherent issues with (in-)homogeneous Poisson arrivals.
-First, any Poisson process --be it homogeneous or not-- is by definition not capable of modeling any correlation between arrivals in consecutive time periods.
+First, any Poisson processes --homogeneous or not-- are by definition not capable of modeling any correlation between arrivals in consecutive time periods.
 This leads to an overestimation of the queue length presumably because the uncaptured correlation is negative~\citep{caccavale2014model}.
 The overestimation of the queue length has a strong impact on the determination of control actions (decisions) to use efficiently the available capacity: models adopting homogeneous Poisson processes may overestimate congestion and yield too \emph{conservative} decisions.
-Second, if we model the arrival stream as a non-homogeneous Poisson process, a possibly large number of parameters has to be estimated. %, in agreement with Koopman's approach.
-Third, the use of projected arrivals~\citep{willemain2004statistical} might not be adequate in a European context, where the arrival rates at several major European airports tend to change \emph{rather fast}, as highlighted by the average-demand curves of Figure~\ref{fig:AvgArrivals} in Section~\ref{sec:serial_corr}.
+Second, if we model the arrival stream as a non-homogeneous Poisson process, a possibly large number of parameters has to be estimated --unless the intensity of the process changes slowly in time. %, in agreement with Koopman's approach.
+Third, the arrival rates at several major European airports tend in fact to change \emph{rather fast}, as highlighted by the average-demand curves of Figure~\ref{fig:AvgArrivals} in Section~\ref{sec:serial_corr}; this occurrence makes both method and results proposed by \citet{willemain2004statistical} not applicable in a European context.
 
 To overcome these issues,~\citet{guadagni2011queueing} have recently proposed to model the arrival stream at airports with a Pre-Scheduled Random Arrivals (\ac{PSRA}) process, which is obtained from a deterministic schedule by superimposing \ac{IID} random delays.
 The list of actual arrival time is the result of \emph{mixing-up} the fixed schedule by the addition of random perturbations.
@@ -234,7 +252,8 @@ Finally, in Sections~\ref{sec:analysis} and~\ref{sec:conclusions} we discuss the
 \subsection{Data}\label{sec:dm_data}
 
 Inbound flight data were extracted from \textsc{Eurocontrol}'s \ac{DDR} between June 15 and September 15, 2016.
-The choice of the summer period aims at reducing the variability of traffic patterns, which might be caused by adverse weather conditions.
+In the summer period, cancellations, diversions, reroutings, and temporary closures of runways and airports tend to occur less frequently than in other periods of the year. Thus, choosing this period allows to compare the proposed models in a situation that, from the point of view of the weather condition, ideally corresponds to a baseline scenario.
+Comparing the models over a longer period should be definitely possible at the cost of introducing seasonal effects, the estimation of which falls outside the scope of this manuscript.
 Table~\ref{tab:flights_count} displays the total count of inbound flights in the study sample for each airport.
 
 \begin{table}[tbp]
@@ -256,13 +275,9 @@ Table~\ref{tab:flights_count} displays the total count of inbound flights in the
     \end{tabular}
 \end{table}
 
-\textcolor{blue}{
-We queried the \ac{DDR} to extract the time each aircraft entered a cylinder of 40 NM (Nautical Mile) around the airport of destination. More specifically, we retrieved both the expected \(t^{M1}\) and the actual \(t^{M3}\) times. The former from
-the last flight plan agreed with \textsc{Network Manager} (\textsc{Eurocontrol}) and the latter from the flight trajectory actually flown.}
-%
-\textcolor{green}{We queried the \ac{DDR} to extract both \emph{M1 and M3 flight plans}, respectively the last flight plan agreed with \textsc{Network Manager} (\textsc{Eurocontrol}) and the flight trajectory actually flown.
-For M1 we use the adjective \emph{regulated} while for M3 we use \emph{observed}.
-From M1 and M3 flight plans, we obtain \(t^{M1}\) and \(t^{M3}\), \ie{} the time at which the aircraft enter a cylinder of 40 NM (Nautical Mile) around the airport according to the corresponding flight plan.}
+We queried the DDR to extract the so-called regulated and actual flight plans.
+The former is the last flight plan agreed with the \textsc{Network Manager (Eurocontrol)}; it can negotiated until 20 minutes before departure. The latter is the flight trajectory actually flown; it reflects adjustments of Air Traffic Control to the regulated plan.
+We denote by \(t^r\) and \(t^a\) the time at which, according to the regulated and the actual flight plan, respectively, the aircraft enters a cylinder of 40 NM (Nautical Mile) around the destination airport.
 This procedure is in agreement with the computation of the ASMA times \citep{ASMA-def}.
 Indeed, the passage time at 40 NM is a proxy for the time when the flight starts the approach phase and is handed over to the Terminal Control.
 This time could have been measured with more accuracy by considering the instantaneous latitude and longitude of each aircraft as reported by the \ac{DDR}, yet the general data analysis methodology and results illustrated hereafter remain valid.
@@ -315,6 +330,8 @@ The two models will be then compared and contrasted on their prediction capabili
 
 We approximate the intensity of the in-homogeneous Poisson process with a step-function.
 The intensities and the corresponding time intervals are computed using first the \PELT{} algorithm~\citep{killick2012optimal} to detect change-points\footnote{Time points where either the mean or the variance of the arrival \ac{TS} undergoes a \emph{structural} change.} in the arrival stream, and then \DBSCAN{}~\citep{ester1996density,pedregosa2011scikit} to cluster change-points and estimated intensities in the \((t, \lambda)\) plane; the intensity of the learned Poisson process is obtained by the centroid of those clusters.
+This results in the formulation of a non-homogeneous Poisson process whose intensity function is daily periodic. This assumption is partly supported by the results in Figure~\ref{fig:autocorr}, but it is also a simplifying assumption. Airline schedule often change between weekdays and weekends. However, a relatively simple formulation is an appealing feature if one has in mind to use and/or derive analytical results (e.g. using this arrival process in a queue model).
+
 The use of \PELT{} is appealing for its low computational cost compared to other change-point detection methods\footnote{As a matter of fact, Functional Pruning Optimal Partitioning~\citep{maidstone2017} might perform even better since the intensity of the process is the only parameter that is going to change under the null.
 However, \PELT{} usage is established and its code well-documented.}~\citep{killick2012optimal}.
 \DBSCAN{} is appropriate because it works with areas of high/low density points, which is exactly the situation depicted in Figure~\ref{A-fig:DD_AIC}.
@@ -352,10 +369,13 @@ The details of the procedure are described by Algorithm~\ref{Alg:POISSON} below.
 For \ac{PSRA}, we simulate the process
 \begin{equation}
 \label{eq:psra-like}
-t_i = t^{M1}_i + \xi_i \,,
+t_i = t^{r}_i + \xi_i \,,
 \end{equation}
-where \(t^{M1}_i\) is the expected (aka regulated) arrival time at 40 NM, \(\xi_i\) is a delay that is generated from a regression model for \(\{t^{M3}_i - t^{M1}_i\}_i\), and \(t^{M3}_i\) is the observed arrival time at 40 NM.
-The model for the delays \(\xi_i\)'s is obtained by training an \(\varepsilon\)-support vector regression model~\citep{cristianini2000introduction} on the following features: flight origin (national, continental, or intercontinental), arrival time according to the M1 flight plan, and day of the week.
+where \(t^{r}_i\) is the regulated arrival time at 40 NM, \(\xi_i\) is a delay that is generated from a regression model for \(\{t^{a}_i - t^{r}_i\}_i\), and \(t^{a}_i\) is the observed arrival time at 40 NM.
+Since the regulated flight plan can change up to 20 minutes before take-off, model (3) is tailored for tactical predictions. However, the regulated flight plan undergoes a number of regulation rounds, and in practice is seldom modified so close to the actual time of operations.
+This means that model~\eqref{eq:psra-like} could be used as-is in a pre-tactical (or even strategical) setting too. In this case one would use the most recent regulations available at the desired time before take-off.
+
+The model for the delays \(\xi_i\)'s is obtained by training an \(\varepsilon\)-support vector regression model~\citep{cristianini2000introduction} on the following features: flight origin (national, continental, or intercontinental), arrival time according to the regulated flight plan, and day of the week.
 The last two features are encoded as two-dimensional cyclic variables using sine/cosine transformations.
 
 Cross-validation is used for both tuning the hyperparameters of the support vector machine and for assessing the model performance. The recommendation in this case is use two rounds of cross-validation~\citep{cawley2010over}, respectively called inner and outer, on different train-test splits of the dataset. Since we are dealing with a TS, we split the dataset in k parts and then form k-1 train sets by taking the first j parts and we use the (j+1)th as the test set.
@@ -366,12 +386,12 @@ The simulation procedure is outlined in Algorithm~\ref{Alg:PSRA}.
 
 \begin{algorithm}
 \begin{algorithmic}[1]
-    \STATE \(T^{M1} \leftarrow \) sequence of \emph{regulated} arrival times at 40 NM
+    \STATE \(T^{r} \leftarrow \) sequence of \emph{regulated} arrival times at 40 NM
     \STATE \(T \leftarrow \) empty list
     \STATE \(X \leftarrow \) matrix of features
     \STATE \(\Xi \leftarrow \) epsilon-support vector regression
     \STATE \(C, \varepsilon \leftarrow \) optimal hyper-parameters via inner cross validation
-    \FOR {each \(t\) in \(T^{M1}\) and each row \(x\) in \(X\)}
+    \FOR {each \(t\) in \(T^{r}\) and each row \(x\) in \(X\)}
         \STATE \(\xi \leftarrow \Xi(x)\)
         \STATE Append \(t + \xi\) to \(T\)
     \ENDFOR
@@ -382,9 +402,15 @@ The simulation procedure is outlined in Algorithm~\ref{Alg:PSRA}.
 
 \subsection{Prediction capabilities of data-driven Poisson and \acs{PSRA}}\label{sec:dm_comparison}
 
-\ac{PSRA} and Poisson stream are compared on the capability of predicting the average weekly demand in the last week of the data set and the daily demand in the last day.
+We compare the PSRA and the Poisson process defined in Sections 2.3 and 2.4 on their capability of predicting future demand. Due to the formulation of the two processes, predictions can be cast for the Poisson process at any point in time, but only when the regulated flight plan is known for the PSRA; this was already discussed in Section 2.4.2.
+The comparison is made on two predictions tasks, namely:
+\begin{enumerate}
+  \item predicting the aggregated demand for each 10-minute interval on the last day of the dataset (September 14);
+  \item predicting the mean aggregated demand for each 10-minute interval averaged over the last week of the dataset (September 5-11).
+\end{enumerate}
+Both tasks yield a vector of 144 predictions (one for each 10-minute interval), on which we compute the following scores: \ac{MAE}, \ac{MSE}, and \(r^2\).
 An outer cross-validation with splits of one week each is used to compare true demand with that predicted by model~\eqref{eq:psra-like}.
-Cross-validation of the data-driven Poisson model is not meaningful, because our formulation assumes that the intensity \(\lambda(t)\) is 24-hour periodic.
+Cross-validation of the data-driven Poisson model is not meaningful, because the method is based on clustering and not on the prediction of a known target variable (\emph{ground truth}).
 Evidence supporting this assumption is given in Section~\ref{sec:serial_corr}.
 Further, this assumption has the desirable property of simplifying the model formulation.
 
@@ -518,13 +544,13 @@ These correlations are not strong in absolute terms, yet they are the strongest 
 \end{table}
 
 Figure~\ref{fig:correlations_true} shows the Pearson's correlation \(\rho_{t_i, t_{i+1}}\) between the \emph{demand variation} in the intervals \([t_i, t_{i+1})\) and \([t_{i+1}, t_{i+2})\).
-The demand variation is computed as the difference between the number of arrivals observed from \(t^{M3}_i\) data and the number of arrivals that were expected according to \(t^{M1}_i\) data.
+The demand variation is computed as the difference between the number of arrivals observed from \(t^{a}_i\) data and the number of arrivals that were expected according to \(t^{r}_i\) data.
 The value of \(\rho_{t_i, t_{i+1}}\) is mostly negative, especially during normal operations hours.
 The majority of these correlations are different or borderline-different from zero at a 5\% significance level.
 This finding is somehow expected in view of the lag-1 autocorrelations reported by Table~\ref{tab:lag01}.
 \begin{kpt}
 	The sign of the correlations is in line with the general result that \ac{PSRA} generate negatively autocorrelated streams~\citep{guadagni2011queueing}.
-  Please note that~\citet{guadagni2011queueing} compute correlations from the observed inbound stream, but have a equally-spaced-in-time arrival schedule.  In our formulation, pre-scheduled arrivals are not equally spaced, but come from the M1 flight plan.
+  Please note that~\citet{guadagni2011queueing} compute correlations from the observed inbound stream, but have a equally-spaced-in-time arrival schedule.  In our formulation, pre-scheduled arrivals are not equally spaced, but come from the regulated flight plan.
   Accordingly, the correct quantity to consider is the demand variation.
 \end{kpt}
 % \begin{rmk}
@@ -537,13 +563,13 @@ This finding is somehow expected in view of the lag-1 autocorrelations reported 
 % \begin{kpt}
   The negative sign of correlations is a very appealing feature of the model as it captures bounds on the available capacity of both terminal airspace and arrival airport.
   If demand variations were mostly uncorrelated or even positively correlated, random fluctuations in the inbound flow might temporarily exceed the capacity of airports and/or terminal sectors.
-  On the contrary, the M1 schedule imposes a structure in the sequence of arrivals~\eqref{eq:psra-like}.
+  On the contrary, the regulated schedule imposes a structure in the sequence of arrivals~\eqref{eq:psra-like}.
 % \end{kpt}
 For the sake of completeness, correlations computed on simulations of~\ref{eq:psra-like} are shown in~\ref{A-sec:appb} of the supplementary material.
 
 \begin{sidewaysfigure}
     \includegraphics[width=\textwidth]{correlations_true}
-    \caption{Correlations from \(t^{M3}_i\) data. Error bars show 95\% confidence interval for Pearson's \(\rho\).}
+    \caption{Correlations from \(t^{a}_i\) data. Error bars show 95\% confidence interval for Pearson's \(\rho\).}
     \label{fig:correlations_true}
 \end{sidewaysfigure}
 
@@ -704,11 +730,11 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
   The average demand plotted in Figure~\ref{fig:AvgArrivals} suggests that the goodness-of-fit might be related to the wavy variation of the demand.
   On the one hand, QQ-plots in Figures~\ref{fig:qqplot5-8}-\ref{fig:qqplot5-17} show that the best fit is achieved by airports where the demand is stable over time, \eg{} \airp{egkk} or \airp{egll}.
   On the other hand, the selected time windows often span moments of lower and higher demand, so that a better fit might be probably obtained by letting the parameter $\beta$ vary over time.
+  Yet, the analysis of the demand correlations in Figure 6 indicates that a non-homogeneous Poisson process is not realistic anyway due to the independence of its increments. In fact, the demand over two consecutive intervals is characterized by non-zero correlations (point estimates mostly negative and often significant at the 5\% level), which in contrast with the assumption of independent increments.
 
-  The analysis of the demand correlations in Figure~\ref{fig:correlations_true} suggests that a process with independent increments (\eg{} a non-homogeneous Poisson) might be not realistic anyway.
-  Nevertheless, (in-)homogeneous Poisson processes are a popular choice for modeling inbound air traffic~\citep{gwiggner2014data}.
+  Homogeneous or not, Poisson processes remain a popular choice for modeling inbound air traffic~\citep{gwiggner2014data}.
   Thus, we proposed an innovative, data-driven approach to the modeling of a non-homogeneous Poisson process by use of \PELT{} (a change-point detection algorithm) and \DBSCAN{} (clustering).
-  Poisson arrivals defined this way were contrasted with a \ac{PSRA} point process, where the observed arrival time arises as the sum of the last-agreed arrival time and a random fluctuations.
+  Poisson arrivals defined this way were contrasted with a \ac{PSRA} point process, where the observed arrival time arises as the sum of the last-agreed arrival time and a random fluctuation.
   A parametric distribution is the typical modeling solution for the the delays \(\xi_i\) in~\eqref{eq:psra-like}, but we introduced an element of novelty by adopting also for \ac{PSRA} a data-driven approach.
   We used a support vector regression model but other choices, like ordinary/generalized least squares or other penalized regressions, are viable options worth to be explored.
 
@@ -726,6 +752,7 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
   Thus, a Poisson process with \(\lambda(t)\) \emph{forced} to vary every 10 minutes would be a model that exactly reproduces the daily average aggregated demand.
   While it is not obvious that such highly-parametric model would score much better than the one presented here, it would still fail to capture the correlation structure of the arrival data because a non-homogeneous Poisson process has independent increments regardless of the functional form of the intensity \(\lambda(t)\).
   Conversely, our \ac{PSRA} model preserves the right correlation structure of the demand by inheriting it from the regulated flight plan, see~\ref{A-sec:appb} in the supplementary material.
+  In addition, \ac{PSRA} have the general property of converging to a Poisson stream in the regime of delays with very large standard deviation~\citep{guadagni2011queueing}. In other words, PSRA can produce a stream of customers that is similar to a Poisson process but has the right correlation structure .
 
 \section{Conclusions}\label{sec:conclusions}
 
@@ -740,7 +767,9 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
 
   In this paper, we offered a thorough analysis of inbound air traffic at eight European airports. We developed two data-driven models, one in the family of Poisson arrivals and the other in the family of \ac{PSRA}.
   We compared their capabilities of predicting future demand.
-  In all the considered airports, the \ac{PSRA} process provides better predictions on the arrival stream and, \emph{in view of these results, we recommend to adopt, whenever possible, \ac{PSRA} instead of any process in the family of Poisson arrivals.}
+  In all the considered airports, the \ac{PSRA} process provides better predictions on the arrival stream.
+  The superior predictive power of the proposed \ac{PSRA} over the proposed non-homogeneous Poisson process is not a reason \emph{per se} to recommend one model or the other.
+  Yet, given the correlation of the demand over consecutive intervals, it is clear than a Poisson process is not a good candidate for the description of the inbound traffic flow in Europe. Their use for the estimation of inbound congestion might result in gross overestimation, as discussed in the introduction. Conversely, \ac{PSRA} are correlated and can look similar to Poisson arrivals. For all these reasons, the authors recommend for all air traffic applications in Europe, \emph{at least} a preliminary evaluation of whether \ac{PSRA} are a suitable model or not.
 
   The proposed approach should be envisioned in simulation-based analysis of air traffic management initiatives at either strategic or planning phase.
   More specifically, it can be used as an engine to support and assess flight schedule development and strategic slot allocation schemes.
