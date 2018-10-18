@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.4.5)  4 JUL 2018 13:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.4.5)  18 OCT 2018 14:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -185,6 +185,7 @@ File: pd1enc.def 2017/03/14 v6.85a Hyperref: PDFDocEncoding definition (HO)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
+Package hyperref Info: Option `final' set `true' on input line 4374.
 Package hyperref Info: Hyper figures OFF on input line 4498.
 Package hyperref Info: Link nesting OFF on input line 4503.
 Package hyperref Info: Hyper index ON on input line 4506.
@@ -502,32 +503,32 @@ LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/tools/xr.sty
 Package: xr 1994/05/28 v5.02 eXternal References (DPC)
 )
-Package xr Info: IMPORTING LABELS FROM LL-A.aux on input line 79.
+Package xr Info: IMPORTING LABELS FROM LL-A.aux on input line 93.
  (./LL.aux)
 \openout1 = `LL.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 117.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 117.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 134.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 134.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    ... okay on input line 134.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -560,7 +561,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box41
-Package hyperref Info: Link coloring OFF on input line 117.
+Package hyperref Info: Link coloring OFF on input line 134.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -570,9 +571,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count150
 )
-LaTeX Info: Redefining \ref on input line 117.
-LaTeX Info: Redefining \pageref on input line 117.
-LaTeX Info: Redefining \nameref on input line 117.
+LaTeX Info: Redefining \ref on input line 134.
+LaTeX Info: Redefining \pageref on input line 134.
+LaTeX Info: Redefining \nameref on input line 134.
 
 (./LL.out) (./LL.out)
 \@outlinefile=\write5
@@ -580,8 +581,8 @@ LaTeX Info: Redefining \nameref on input line 117.
 
 Package acronym Info: Label `acro:PSRA' newly defined as it shall be overridden
 
-although it is yet undefined on input line 136.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 149.
+although it is yet undefined on input line 153.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 166.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1cmtt.fd
@@ -592,219 +593,229 @@ File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 Package acronym Info: Label `acro:ASMA' newly defined as it shall be overridden
 
-although it is yet undefined on input line 164.
- [2]
-Package acronym Info: Label `acro:ETA' newly defined as it shall be overridden
-although it is yet undefined on input line 182.
+although it is yet undefined on input line 181.
+ [2] [3]
 Package acronym Info: Label `acro:IID' newly defined as it shall be overridden
-although it is yet undefined on input line 190.
- [3]
+although it is yet undefined on input line 208.
+ [4]
+Overfull \hbox (19.42578pt too wide) in paragraph at lines 224--229
+[]\T1/cmr/m/n/10 In this pa-per, we present data-driven mod-els for both [][] a
+nd non-homogeneous
+ []
+
+[5]
 Package acronym Info: Label `acro:ICAO' newly defined as it shall be overridden
 
-although it is yet undefined on input line 207.
- [4]
+although it is yet undefined on input line 230.
+ [6]
 Package acronym Info: Label `acro:DDR' newly defined as it shall be overridden
-although it is yet undefined on input line 233.
+although it is yet undefined on input line 254.
+ [7]
 Package acronym Info: Label `acro:TS' newly defined as it shall be overridden
-although it is yet undefined on input line 264.
- [5pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
+although it is yet undefined on input line 286.
+ [8pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.274 \end{equation}
+l.296 \end{equation}
                     ]
 Package acronym Info: Label `acro:PMF' newly defined as it shall be overridden
-although it is yet undefined on input line 282.
+although it is yet undefined on input line 304.
 
-Overfull \hbox (2.69653pt too wide) in paragraph at lines 288--293
+Overfull \hbox (14.1623pt too wide) in paragraph at lines 302--307
+\T1/cmr/m/n/10 and [] be-come re-spec-tively an ex-po-nen-tial dis-tri-bu-tion 
+and a ge-o-met-ric [][][]Probability
+ []
+
+
+Overfull \hbox (2.69653pt too wide) in paragraph at lines 310--315
 []\T1/cmr/m/n/10 Typical char-ac-ter-is-tics of the in-bound stream are as-sess
 ed with an ex-ploratory
  []
 
 Package acronym Info: Label `acro:ACF' newly defined as it shall be overridden
-although it is yet undefined on input line 295.
-
-Overfull \hbox (18.69263pt too wide) in paragraph at lines 303--306
+although it is yet undefined on input line 317.
+[9]
+Overfull \hbox (18.69263pt too wide) in paragraph at lines 325--328
 []\T1/cmr/m/n/10 Two mod-els for the in-bound stream at air-ports are pre-sente
 d: a non-homogeneous
  []
 
-[6]
+[10]
 Package acronym Info: Label `acro:AIC' newly defined as it shall be overridden
-although it is yet undefined on input line 315.
+although it is yet undefined on input line 339.
 Package acronym Info: Label `acro:MBIC' newly defined as it shall be overridden
 
-although it is yet undefined on input line 315.
+although it is yet undefined on input line 339.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 340.
- [7]
-Overfull \hbox (27.85388pt too wide) in paragraph at lines 382--383
+put line 364.
+ [11] [12] [13]
+Package acronym Info: Label `acro:MAE' newly defined as it shall be overridden
+although it is yet undefined on input line 411.
+Package acronym Info: Label `acro:MSE' newly defined as it shall be overridden
+although it is yet undefined on input line 411.
+
+Overfull \hbox (27.85388pt too wide) in paragraph at lines 417--418
 \T1/cmr/m/n/10 the ad-dress []$\T1/cmtt/m/n/10 https : / / github . com / clanc
 ia / air-[]traffic-[]data-[]driven-[]modelling /
  []
 
-[8] <IA_qqplot0800-0930.png, id=336, 1262.316pt x 598.1547pt>
+[14] <IA_qqplot0800-0930.png, id=385, 1262.316pt x 598.1547pt>
 File: IA_qqplot0800-0930.png Graphic file (type png)
 
 <use IA_qqplot0800-0930.png>
-Package pdftex.def Info: IA_qqplot0800-0930.png used on input line 440.
+Package pdftex.def Info: IA_qqplot0800-0930.png used on input line 475.
 (pdftex.def)             Requested size: 550.0pt x 260.61504pt.
 
-<IA_qqplot1200-1330.png, id=342, 1262.316pt x 598.1547pt>
+<IA_qqplot1200-1330.png, id=391, 1262.316pt x 598.1547pt>
 File: IA_qqplot1200-1330.png Graphic file (type png)
 
 <use IA_qqplot1200-1330.png>
-Package pdftex.def Info: IA_qqplot1200-1330.png used on input line 446.
+Package pdftex.def Info: IA_qqplot1200-1330.png used on input line 481.
 (pdftex.def)             Requested size: 550.0pt x 260.61504pt.
 
-<IA_qqplot1800-1930.png, id=347, 1257.9798pt x 598.1547pt>
+<IA_qqplot1800-1930.png, id=396, 1257.9798pt x 598.1547pt>
 File: IA_qqplot1800-1930.png Graphic file (type png)
 
 <use IA_qqplot1800-1930.png>
-Package pdftex.def Info: IA_qqplot1800-1930.png used on input line 452.
+Package pdftex.def Info: IA_qqplot1800-1930.png used on input line 487.
 (pdftex.def)             Requested size: 550.0pt x 261.51862pt.
 
-<AvgArrivals.png, id=355, 1437.9321pt x 717.1593pt>
+<AvgArrivals.png, id=404, 1437.9321pt x 717.1593pt>
 File: AvgArrivals.png Graphic file (type png)
  <use AvgArrivals.png>
-Package pdftex.def Info: AvgArrivals.png used on input line 467.
+Package pdftex.def Info: AvgArrivals.png used on input line 502.
 (pdftex.def)             Requested size: 550.0pt x 274.31801pt.
 
-[9] [10pdfTeX warning (ext4): destination with the same identifier (name{table.
-2}) has been already used, duplicate ignored
+[15] [16pdfTeX warning (ext4): destination with the same identifier (name{table
+.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.479 
-      ] [11pdfTeX warning (ext4): destination with the same identifier (name{fi
+l.514 
+      ] [17pdfTeX warning (ext4): destination with the same identifier (name{fi
 gure.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.479 
-       <./IA_qqplot0800-0930.png>] [12pdfTeX warning (ext4): destination with t
+l.514 
+       <./IA_qqplot0800-0930.png>] [18pdfTeX warning (ext4): destination with t
 he same identifier (name{figure.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.479 
-       <./IA_qqplot1200-1330.png>] [13pdfTeX warning (ext4): destination with t
+l.514 
+       <./IA_qqplot1200-1330.png>] [19pdfTeX warning (ext4): destination with t
 he same identifier (name{figure.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.479 
-       <./IA_qqplot1800-1930.png>] [14pdfTeX warning (ext4): destination with t
+l.514 
+       <./IA_qqplot1800-1930.png>] [20pdfTeX warning (ext4): destination with t
 he same identifier (name{figure.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.479 
-       <./AvgArrivals.png>] <Autocorr.png, id=398, 1437.4503pt x 717.4002pt>
+l.514 
+       <./AvgArrivals.png>] <Autocorr.png, id=444, 1437.4503pt x 717.4002pt>
 File: Autocorr.png Graphic file (type png)
 
 <use Autocorr.png>
-Package pdftex.def Info: Autocorr.png used on input line 488.
+Package pdftex.def Info: Autocorr.png used on input line 523.
 (pdftex.def)             Requested size: 550.0pt x 274.48679pt.
- [15pdfTeX warning (ext4): destination with the same identifier (name{table.3})
- has been already used, duplicate ignored
+ [21] [22pdfTeX warning (ext4): destination with the same identifier (name{figu
+re.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.517 	T
+l.552 	T
         he sign of the correlations is in line with the general result that ...
-] [16pdfTeX warning (ext4): destination with the same identifier (name{figure.5
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.517 	T
-        he sign of the correlations is in line with the general result that ...
- <./Autocorr.png>] <correlations_true.png, id=427, 1384.4523pt x 594.7821pt>
+ <./Autocorr.png>] <correlations_true.png, id=473, 1384.4523pt x 594.7821pt>
 File: correlations_true.png Graphic file (type png)
 
 <use correlations_true.png>
-Package pdftex.def Info: correlations_true.png used on input line 536.
+Package pdftex.def Info: correlations_true.png used on input line 571.
 (pdftex.def)             Requested size: 550.0pt x 236.28409pt.
- <DDPoisson.png, id=435, 1149.093pt x 595.023pt>
-File: DDPoisson.png Graphic file (type png)
-
-<use DDPoisson.png>
-Package pdftex.def Info: DDPoisson.png used on input line 560.
-(pdftex.def)             Requested size: 550.0pt x 284.79973pt.
- [17] [18pdfTeX warning (ext4): destination with the same identifier (name{figu
-re.6}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.572   I
-         t is clear that even a simple regression model like the one used fo...
- <./correlations_true.png>] [19pdfTeX warning (ext4): destination with the same
- identifier (name{figure.7}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.572   I
-         t is clear that even a simple regression model like the one used fo...
- <./DDPoisson.png>]
-Package acronym Info: Label `acro:MAE' newly defined as it shall be overridden
-although it is yet undefined on input line 620.
-Package acronym Info: Label `acro:MSE' newly defined as it shall be overridden
-although it is yet undefined on input line 620.
- [20pdfTeX warning (ext4): destination with the same identifier (name{table.4})
+ [23pdfTeX warning (ext4): destination with the same identifier (name{table.3})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.623 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.5
-}) has been already used, duplicate ignored
+l.581 
+      ] [24pdfTeX warning (ext4): destination with the same identifier (name{fi
+gure.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.623 
-      ] <prediction_last_week.png, id=482, 1385.6568pt x 654.2844pt>
+l.581 
+       <./correlations_true.png>]
+<DDPoisson.png, id=494, 1149.093pt x 595.023pt>
+File: DDPoisson.png Graphic file (type png)
+ <use DDPoisson.png>
+Package pdftex.def Info: DDPoisson.png used on input line 595.
+(pdftex.def)             Requested size: 550.0pt x 284.79973pt.
+ [25]
+[26pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.608 \end{kpt}
+                <./DDPoisson.png>]
+<prediction_last_week.png, id=525, 1385.6568pt x 654.2844pt>
 File: prediction_last_week.png Graphic file (type png)
 
 <use prediction_last_week.png>
-Package pdftex.def Info: prediction_last_week.png used on input line 625.
+Package pdftex.def Info: prediction_last_week.png used on input line 660.
 (pdftex.def)             Requested size: 550.0pt x 259.70242pt.
 
-<prediction_last_day.png, id=485, 1389.993pt x 654.2844pt>
+<prediction_last_day.png, id=528, 1389.993pt x 654.2844pt>
 File: prediction_last_day.png Graphic file (type png)
 
 <use prediction_last_day.png>
-Package pdftex.def Info: prediction_last_day.png used on input line 659.
+Package pdftex.def Info: prediction_last_day.png used on input line 694.
 (pdftex.def)             Requested size: 550.0pt x 258.89375pt.
- [21pdfTeX warning (ext4): destination with the same identifier (name{table.6})
+ [27pdfTeX warning (ext4): destination with the same identifier (name{table.4})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.698 
-      ] [22pdfTeX warning (ext4): destination with the same identifier (name{fi
+l.734 
+      ] [28pdfTeX warning (ext4): destination with the same identifier (name{fi
 gure.8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.698 
-       <./prediction_last_week.png>] [23pdfTeX warning (ext4): destination with
+l.734 
+       <./prediction_last_week.png>] [29pdfTeX warning (ext4): destination with
  the same identifier (name{figure.9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.698 
-       <./prediction_last_day.png>] [24pdfTeX warning (ext4): destination with 
-the same identifier (name{table.7}) has been already used, duplicate ignored
+l.734 
+       <./prediction_last_day.png>] [30pdfTeX warning (ext4): destination with 
+the same identifier (name{table.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.711 
-      ]
+l.734 
+      ] [31pdfTeX warning (ext4): destination with the same identifier (name{ta
+ble.6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.734 
+      ] [32pdfTeX warning (ext4): destination with the same identifier (name{ta
+ble.7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.734 
+      ] [33]
 Package acronym Info: Label `acro:MLE' newly defined as it shall be overridden
-although it is yet undefined on input line 716.
- [25] [26] (./LL.bbl
+although it is yet undefined on input line 751.
+ [34] [35] (./LL.bbl
 Underfull \hbox (badness 1448) in paragraph at lines 24--32
 []\T1/cmr/m/n/10 Arnold, T. B., & Emer-son, J. W. (2011).  Non-para-met-ric Goo
 dness-
@@ -822,33 +833,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 71--76
 s / methodology / additional _
  []
 
+[36
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--100
+]
+Underfull \hbox (badness 10000) in paragraph at lines 102--108
 \T1/cmtt/m/n/10 files / content / documents / official-[]documents / facts-[]an
 d-[]figures /
  []
 
-[27
-
-] [28])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 910.
- [29]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 910.
+[37] [38])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 948.
+ [39]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 948.
  (./LL.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 910.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 910.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 948.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 948.
 Package rerunfilecheck Info: File `LL.out' has not changed.
-(rerunfilecheck)             Checksum: F11BDCB25CEEDABC7EA5093E530B923F;1405.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 910.
+(rerunfilecheck)             Checksum: 8D8C46BF1D6F73A60EA4EF97616A928D;1477.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 948.
  ) 
 Here is how much of TeX's memory you used:
- 9129 strings out of 492995
- 128459 string characters out of 6132705
- 242851 words of memory out of 5000000
- 12371 multiletter control sequences out of 15000+600000
+ 9146 strings out of 492995
+ 128693 string characters out of 6132705
+ 250188 words of memory out of 5000000
+ 12376 multiletter control sequences out of 15000+600000
  16461 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,9n,35p,719b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,9n,35p,868b,528s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{appendix.D} has been referenced but does not exis
 t, replaced by a fixed one
 
@@ -890,10 +901,10 @@ lic/cm-super/sfti0800.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
 c/cm-super/sfti1000.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/
 cm-super/sftt0800.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm
 -super/sftt1000.pfb>
-Output written on LL.pdf (29 pages, 8028211 bytes).
+Output written on LL.pdf (39 pages, 8037488 bytes).
 PDF statistics:
- 699 PDF objects out of 1000 (max. 8388607)
- 603 compressed objects within 7 object streams
- 156 named destinations out of 1000 (max. 500000)
+ 765 PDF objects out of 1000 (max. 8388607)
+ 659 compressed objects within 7 object streams
+ 168 named destinations out of 1000 (max. 500000)
  190 words of extra memory for PDF output out of 10000 (max. 10000000)
 
