@@ -158,7 +158,8 @@ Over the years, air traffic demand increased at a much faster pace compared to t
 Although in the last decade we have witnessed a mitigation of congestion phenomena --air traffic demand has not recovered yet since the 2008 economic crisis-- the latest air traffic statistics published by \textsc{Eurocontrol} show a significant deterioration of on-time performance in the \acl{ECAC} area.
 The average delay per flight is at its highest in the last 10 years~\citep{coda2016}.
 To get a good grasp of the level of congestion, 7,167 flights were canceled and 107,426  delayed in Europe between November 28 and December 27, 2016.
-The situation was even worse in the US, as the statistics of canceled and delayed flights showed double digits~(\citeauthor{flightstats}).
+The situation was even worse in the US, 
+\textcolor{blue}{\bf as the number of canceled and delayed flights were twice as many as the figures recorded in Europe} ~(\citeauthor{flightstats}).
 However, for the sake of completeness, the number of controlled flights in the US is much larger: 15.3 million  in the US versus 9.9 million flights in Europe in 2015~\citep{EUCTRL-FAA2015}.
 
 Airports are the most relevant bottlenecks of the air traffic system. The \ac{ASMA} additional time --which is a proxy for the average arrival runway queuing time of the inbound traffic flow-- during times when the airport is experiencing high demand, is an indicator of airport congestion~\citep{ASMA-def}. In 2015, the average \acs{ASMA} additional time at the top 30 European airports amounted to  2.27 minutes per arrival, increasing by about 18\% with respect to the previous year.
@@ -191,7 +192,7 @@ To overcome these issues,~\citet{guadagni2011queueing} have recently proposed to
 The list of actual arrival time is the result of \emph{mixing-up} the fixed schedule by the addition of random perturbations.
 The resulting process --which is known since the 60's~\citep{Kendall1964}-- was able to provide very good fit of the simulated congestion with that obtained from arrivals at London Heathrow airport~\citep{caccavale2014model}.
 Further, the \ac{PSRA} process is easy to study numerically, and some significant analytical results have been recently achieved by~\citet{lancia2013advances}.
-\citet{nikoleris2012queueing} used \ac{PSRA} to develop a single-server queuing model for trajectory-based aircraft operations that accounts explicitly for varying levels of imprecision in meeting prescribed times of arrival at airspace fixes.
+\citet{nikoleris2012queueing} used \ac{PSRA} to develop a single-server queuing model for trajectory-based aircraft operations that accounts explicitly for varying levels of imprecision in meeting prescribed times of arrival \textcolor{blue}{at either a point in the airspace or a runway’s threshold.}
 With the purpose of gaining insight into the generation of the observed delays and balancing congestion delays more efficiently between ground and en-route, \citet{gwiggner2014data} compared two single-server queuing models (\(\cdot/D/1\) and \(\cdot/G/1\) in Kendall's notation) using both Poisson and \ac{PSRA} as arrival processes.
 From the analysis on the east-bound arrivals at Tokyo International Airport, they concluded that \ac{PSRA} and a Poisson stream behave equivalently during moderate congestion but differ substantially during very high congestion.
 However, this comparison is indirect because it was based on a queue.
