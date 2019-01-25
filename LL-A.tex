@@ -30,16 +30,16 @@
 \newcommand{\DBSCAN}{\textsc{dbscan}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{xcolor}
-\definecolor{eham}{rgb}{1.0, 0.714, 0.467}
-\definecolor{egll}{rgb}{0.427, 0.714, 1.0}
+\definecolor{ams}{rgb}{1.0, 0.714, 0.467}
+\definecolor{lhr}{rgb}{0.427, 0.714, 1.0}
 \definecolor{egss}{rgb}{0.859, 0.82, 0.0}
-\definecolor{lgav}{rgb}{0.0, 0.427, 0.859}
-\definecolor{lemd}{rgb}{0.573, 0.0, 0.0}
-\definecolor{egkk}{rgb}{0.0, 0.286, 0.286}
-\definecolor{lirf}{rgb}{0.141, 1.0, 0.141}
-\definecolor{eddf}{rgb}{0.286, 0.0, 0.573}
+\definecolor{ath}{rgb}{0.0, 0.427, 0.859}
+\definecolor{mad}{rgb}{0.573, 0.0, 0.0}
+\definecolor{lgw}{rgb}{0.0, 0.286, 0.286}
+\definecolor{fco}{rgb}{0.141, 1.0, 0.141}
+\definecolor{fra}{rgb}{0.286, 0.0, 0.573}
 \definecolor{eggw}{rgb}{0.714, 0.859, 1.0}
-\definecolor{lfpg}{rgb}{0.573, 0.286, 0.0}
+\definecolor{cgd}{rgb}{0.573, 0.286, 0.0}
 
 \newcommand{\airp}[1]{\textcolor{#1}{\textsc{#1}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,6 +69,7 @@
 \acrodef{UTC}{Coordinated Universal Time}
 \acrodef{ASMA}{Arrival Sequencing and Metering Area}
 \acrodef{ECAC}{European Civil Aviation Conference}
+\acrodef{IATA}{International Air Transport Association}
 \acrodef{ICAO}{International Civil Aviation Organization}
 \acrodef{MBIC}{Modified Bayesian Information Criterion}
 \acrodef{PSRA}{Pre-Scheduled Random Arrivals}
@@ -141,7 +142,7 @@
   Figure~\ref{fig:DD_AIC} shows the change-point identified by \PELT{} and the resulting clustering via \DBSCAN{} when \PELT{} uses the \ac{AIC} penalty.
   In this setting, \PELT{} is much more sensible and detects regime changes in correspondence of maxima and minima of the average demand.
   The resulting description of the arrival stream in terms of a Poisson process is hence richer and follows more closely the average demand.
-  However, the increased sensibility in the change point detection comes at the price of a \emph{noisy} distribution of change-points in the \((t,\lambda)\) plane, which might be difficult to reconstruct via \DBSCAN{} (see \airp{egkk}).
+  However, the increased sensibility in the change point detection comes at the price of a \emph{noisy} distribution of change-points in the \((t,\lambda)\) plane, which might be difficult to reconstruct via \DBSCAN{} (see \airp{lgw}).
 
   \begin{figure}
       \includegraphics[width=\textwidth]{DDPoisson_AIC}
@@ -178,7 +179,7 @@ On the \(x\)-axis there is time and on the \(y\)-axis the scale parameter of the
   This appendix details the intensity function of the Poisson process obtained in Section~\ref{Main-sec:pois}.
   The intensity function is a periodic right-continuous step-function, which takes on value \(\hat{\lambda}\) between two consecutive values of \(\hat{t}\).
   The values of \(\hat{t}\) and \(\hat{\lambda}\) are reported for each airport by Table~\ref{tab:poisson_segmentation} below.
-  The table shows how the model correctly captures the typical hourly landing rate in the moments of highest demand, when we expect the airport to operate close to its maximum capacity. For \airp{egll}, \(\lambda = 0.64\) aircraft/min corresponds to \(38.4\) aircraft/hour, which is close to the maximum declared capacity of 45; for \airp{eddf}, \(\lambda = 0.90\) aircraft/min corresponds to \(54\) aircraft/hour, which is close to the maximum declared capacity of 60; finally, for \airp{eham}, \(\lambda = 1.13\) aircraft/min corresponds to \(67.8\) aircraft/hour, which is very close to the the maximum declared capacity of 68 (capacity data from \url{https://ext.eurocontrol.int/airport_corner_public/}).
+  The table shows how the model correctly captures the typical hourly landing rate in the moments of highest demand, when we expect the airport to operate close to its maximum capacity. For \airp{lhr}, \(\lambda = 0.64\) aircraft/min corresponds to \(38.4\) aircraft/hour, which is close to the maximum declared capacity of 45; for \airp{fra}, \(\lambda = 0.90\) aircraft/min corresponds to \(54\) aircraft/hour, which is close to the maximum declared capacity of 60; finally, for \airp{ams}, \(\lambda = 1.13\) aircraft/min corresponds to \(67.8\) aircraft/hour, which is very close to the the maximum declared capacity of 68 (capacity data from \url{https://ext.eurocontrol.int/airport_corner_public/}).
 
   \begin{center}
     \begin{longtable}{lll}
@@ -205,7 +206,7 @@ On the \(x\)-axis there is time and on the \(y\)-axis the scale parameter of the
       \bottomrule
       \endlastfoot
 
-      \airp{eddf} & 04:32 UTC+02 &  0.2657 aircraft/min \\
+      \airp{fra} & 04:32 UTC+02 &  0.2657 aircraft/min \\
            & 06:41 UTC+02 &  0.7325 aircraft/min \\
            & 08:55 UTC+02 &  0.4991 aircraft/min \\
            & 10:33 UTC+02 &  0.8550 aircraft/min \\
@@ -214,15 +215,15 @@ On the \(x\)-axis there is time and on the \(y\)-axis the scale parameter of the
            & 16:31 UTC+02 &  0.4270 aircraft/min \\
            & 18:29 UTC+02 &  0.9034 aircraft/min \\
            & 22:04 UTC+02 &  0.1182 aircraft/min \\
-      \airp{egkk} & 02:40 UTC+01 &  0.0671 aircraft/min \\
+      \airp{lgw} & 02:40 UTC+01 &  0.0671 aircraft/min \\
            & 06:54 UTC+01 &  0.2858 aircraft/min \\
            & 10:10 UTC+01 &  0.4195 aircraft/min \\
            & 23:26 UTC+01 &  0.2328 aircraft/min \\
-      \airp{egll} & 00:25 UTC+01 &  0.0000 aircraft/min \\
+      \airp{lhr} & 00:25 UTC+01 &  0.0000 aircraft/min \\
            & 04:56 UTC+01 &  0.1409 aircraft/min \\
            & 07:16 UTC+01 &  0.6410 aircraft/min \\
            & 22:24 UTC+01 &  0.1424 aircraft/min \\
-      \airp{eham} & 02:47 UTC+02 &  0.0537 aircraft/min \\
+      \airp{ams} & 02:47 UTC+02 &  0.0537 aircraft/min \\
            & 06:30 UTC+02 &  0.4222 aircraft/min \\
            & 07:25 UTC+02 &  0.9062 aircraft/min \\
            & 08:53 UTC+02 &  0.4416 aircraft/min \\
@@ -235,7 +236,7 @@ On the \(x\)-axis there is time and on the \(y\)-axis the scale parameter of the
            & 18:26 UTC+02 &  1.1255 aircraft/min \\
            & 19:52 UTC+02 &  0.4881 aircraft/min \\
            & 22:26 UTC+02 &  0.1942 aircraft/min \\
-      \airp{lemd} & 01:00 UTC+02 &  0.0386 aircraft/min \\
+      \airp{mad} & 01:00 UTC+02 &  0.0386 aircraft/min \\
            & 04:30 UTC+02 &  0.1240 aircraft/min \\
            & 06:12 UTC+02 &  0.0293 aircraft/min \\
            & 07:14 UTC+02 &  0.3511 aircraft/min \\
@@ -247,7 +248,7 @@ On the \(x\)-axis there is time and on the \(y\)-axis the scale parameter of the
            & 20:01 UTC+02 &  0.6972 aircraft/min \\
            & 22:33 UTC+02 &  0.3309 aircraft/min \\
            & 23:35 UTC+02 &  0.1493 aircraft/min \\
-      \airp{lfpg} & 01:24 UTC+02 &  0.0530 aircraft/min \\
+      \airp{cgd} & 01:24 UTC+02 &  0.0530 aircraft/min \\
            & 05:18 UTC+02 &  0.1852 aircraft/min \\
            & 07:08 UTC+02 &  0.5127 aircraft/min \\
            & 08:06 UTC+02 &  1.0003 aircraft/min \\
@@ -260,12 +261,12 @@ On the \(x\)-axis there is time and on the \(y\)-axis the scale parameter of the
            & 20:01 UTC+02 &  0.4632 aircraft/min \\
            & 22:16 UTC+02 &  0.3120 aircraft/min \\
            & 23:21 UTC+02 &  0.0631 aircraft/min \\
-      \airp{lgav} & 01:27 UTC+03 &  0.0445 aircraft/min \\
+      \airp{ath} & 01:27 UTC+03 &  0.0445 aircraft/min \\
            & 06:45 UTC+03 &  0.4592 aircraft/min \\
            & 07:16 UTC+03 &  0.2315 aircraft/min \\
            & 12:03 UTC+03 &  0.3028 aircraft/min \\
            & 21:27 UTC+03 &  0.1993 aircraft/min \\
-      \airp{lirf} & 03:29 UTC+02 &  0.1019 aircraft/min \\
+      \airp{fco} & 03:29 UTC+02 &  0.1019 aircraft/min \\
            & 06:47 UTC+02 &  0.5395 aircraft/min \\
            & 09:24 UTC+02 &  0.3155 aircraft/min \\
            & 11:49 UTC+02 &  0.6698 aircraft/min \\

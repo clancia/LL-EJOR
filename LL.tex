@@ -1,4 +1,4 @@
-\documentclass[draft,review]{elsarticle}
+\documentclass[final,review]{elsarticle}
 
 \usepackage{lineno,hyperref}
 \modulolinenumbers[5]
@@ -30,16 +30,16 @@
 \newcommand{\DBSCAN}{\textsc{dbscan}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{xcolor}
-\definecolor{eham}{rgb}{1.0, 0.714, 0.467}
-\definecolor{egll}{rgb}{0.427, 0.714, 1.0}
-\definecolor{egss}{rgb}{0.859, 0.82, 0.0}
-\definecolor{lgav}{rgb}{0.0, 0.427, 0.859}
-\definecolor{lemd}{rgb}{0.573, 0.0, 0.0}
-\definecolor{egkk}{rgb}{0.0, 0.286, 0.286}
-\definecolor{lirf}{rgb}{0.141, 1.0, 0.141}
-\definecolor{eddf}{rgb}{0.286, 0.0, 0.573}
-\definecolor{eggw}{rgb}{0.714, 0.859, 1.0}
-\definecolor{lfpg}{rgb}{0.573, 0.286, 0.0}
+\definecolor{ams}{rgb}{1.0, 0.714, 0.467}
+\definecolor{lhr}{rgb}{0.427, 0.714, 1.0}
+\definecolor{stn}{rgb}{0.859, 0.82, 0.0}
+\definecolor{ath}{rgb}{0.0, 0.427, 0.859}
+\definecolor{mad}{rgb}{0.573, 0.0, 0.0}
+\definecolor{lgw}{rgb}{0.0, 0.286, 0.286}
+\definecolor{fco}{rgb}{0.141, 1.0, 0.141}
+\definecolor{fra}{rgb}{0.286, 0.0, 0.573}
+\definecolor{ltn}{rgb}{0.714, 0.859, 1.0}
+\definecolor{cgd}{rgb}{0.573, 0.286, 0.0}
 
 \newcommand{\airp}[1]{\textcolor{#1}{\textsc{#1}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,6 +69,7 @@
 \acrodef{UTC}{Coordinated Universal Time}
 \acrodef{ASMA}{Arrival Sequencing and Metering Area}
 \acrodef{ECAC}{European Civil Aviation Conference}
+\acrodef{IATA}{International Air Transport Association}
 \acrodef{ICAO}{International Civil Aviation Organization}
 \acrodef{MBIC}{Modified Bayesian Information Criterion}
 \acrodef{PSRA}{Pre-Scheduled Random Arrivals}
@@ -172,8 +173,7 @@ Transportation \sep Air traffic \sep Demand prediction \sep Data-driven modeling
 
 Air congestion is a regular and persistent phenomenon in the air traffic system in both the US and Europe.
 Over the years, air traffic demand increased at a much faster pace compared to the increment of air-traffic-system capacity.
-Although in the last decade we have witnessed a mitigation of congestion phenomena --air traffic demand has not recovered yet since the 2008 economic crisis-- the latest air traffic statistics published by \textsc{Eurocontrol} show a significant deterioration of on-time performance in the \acl{ECAC} area.
-The average delay per flight is at its highest in the last 10 years~\citep{coda2016}.
+In the last decade, we have witnessed a mitigation of congestion phenomena, with air traffic demand just recovering from the 2008 economic crisis~\citep[\S{}1.2]{prr2017}. Yet, the latest air traffic statistics published by \textsc{Eurocontrol} show a significant deterioration of on-time performance in the \acl{ECAC} area: the average delay per flight is at its highest in the last 10 years~\citep{coda2016}.
 To get a good grasp of the level of congestion, 7,167 flights were canceled and 107,426  delayed in Europe between November 28 and December 27, 2016.
 The situation was even worse in the US, as the number of canceled and delayed flights were twice as many as the figures recorded in Europe~(\citeauthor{flightstats}).
 However, for the sake of completeness, the number of controlled flights in the US is much larger: 15.3 million  in the US versus 9.9 million flights in Europe in 2015~\citep{EUCTRL-FAA2015}.
@@ -227,8 +227,8 @@ An important element of novelty introduced by this work is the use of a regressi
 The use of a regression model allows to model flight delays and yields precise prediction of the demand.
 The paper introduces elements of novelty also in the definition of the Poisson process, which is learned from the data using an original combination of online change-point detection and clustering.
 
-We study the arrival process in the period from June 15 to September 15, 2016, at some of the busiest and most congested airports in Europe, namely, London Heathrow (\ac{ICAO} code: \airp{egll}), London Gatwick (\airp{egkk}), Frankfurt am Main (\airp{eddf}), Amsterdam Schiphol (\airp{eham}), and Paris C. De Gaulle (\airp{lfpg}).
-As we are also interested in the modeling of medium-intensity traffic, we include in the dataset arrivals at three other important airports: Madrid Barajas (\airp{lemd}), Rome Fiumicino (\airp{lirf}), and Athens International (\airp{lgav}).
+We study the arrival process in the period from June 15 to September 15, 2016, at some of the busiest and most congested airports in Europe, namely, London Heathrow (\ac{IATA} code: \airp{lhr}), London Gatwick (\airp{lgw}), Frankfurt am Main (\airp{fra}), Amsterdam Schiphol (\airp{ams}), and Paris C. De Gaulle (\airp{cgd}).
+As we are also interested in the modeling of medium-intensity traffic, we include in the dataset arrivals at three other important airports: Madrid Barajas (\airp{mad}), Rome Fiumicino (\airp{fco}), and Athens International (\airp{ath}).
 
 Inter-arrival data seemingly suggest that the underlying arrival stream is homogeneous Poisson over the three time intervals considered.
 Nevertheless, using such a process to model the arrival stream with good approximation presents some weaknesses and difficulties, which we describe in detail in the following sections.
@@ -239,7 +239,7 @@ The approach described herein will allow more accurate analysis, and therefore b
 As a consequence, it will also contribute to the improvement of the ATM-system efficiency: even a small reduction in terms of average \ac{ASMA} time can have a huge impact in terms of fuel costs, greenhouse emissions, air traffic controllers' workload and safety.
 
 Summarizing, the contribution of this paper is three-fold.
-First, we verify that inter-arrivals seemingly follow an exponential distribution, translating (part of) the results of~\cite{willemain2004statistical} and~\citep{gwiggner2014data} to a European context; next, we explore serial correlations in the arrival stream and show how this finding does not directly support the assumption of (in-homogeneous) Poisson arrivals. Second, we propose an innovative data-driven approach to the modeling of the inbound stream, showing all procedural details to define a non-homogeneous Poisson process and \ac{PSRA}. Third, we compare the processes obtained this way on the task of predicting future demand.
+First, we verify that inter-arrivals seemingly follow an exponential distribution, translating (part of) the results of~\cite{willemain2004statistical} and~\citep{gwiggner2014data} to a European context; next, we explore serial correlations in the arrival stream and show how this finding does not directly support the assumption of (in-homogeneous) Poisson arrivals. Second, we propose a novel data-driven approach to the modeling of the inbound stream, showing all procedural details to define a non-homogeneous Poisson process and \ac{PSRA}. Third, we compare the processes obtained this way on the task of predicting future demand.
 
 The remainder of this paper is organized as follows.
 In Section~\ref{sec:data_methods}, we describe the dataset and the data-analysis methodology used for this study.
@@ -252,25 +252,27 @@ Finally, in Sections~\ref{sec:analysis} and~\ref{sec:conclusions} we discuss the
 \subsection{Data}\label{sec:dm_data}
 
 Inbound flight data were extracted from \textsc{Eurocontrol}'s \ac{DDR} between June 15 and September 15, 2016.
-In the summer period, cancellations, diversions, rerouting, and temporary closure of runways and airports tend to occur less frequently than in other periods of the year. Thus, choosing this period allows to compare the proposed models in a situation that ideally corresponds to a baseline scenario from the point of view of the weather condition.
-Comparing the models over a longer period should be definitely possible at the cost of introducing seasonal effects, the estimation of which falls outside the scope of this manuscript.
+In the summer period, cancellations, diversions, rerouting, and temporary closure of runways and airports tend to occur less frequently than in other periods of the year. Thus, choosing this period allows to compare the proposed models in a situation that ideally corresponds to a baseline scenario from the point of view of the weather-related disruptions.
+On the other hand, the summer period is arguably more challenging for the modelling of the demand, the latter being notoriously higher than in other periods of the year.
+In this respect, the performance results presented in Section~\ref{sec:comparison} should not be considered as a worst-case benchmark, but rather as results obtained in a favourable setting weather-wise. Nevertheless, since models are built on the same data, comparing their predictinve performance is nothing short of fair.
+% Comparing the models over a longer period should be definitely possible at the cost of introducing seasonal effects, the estimation of which falls outside the scope of this manuscript.
 Table~\ref{tab:flights_count} displays the total count of inbound flights in the study sample for each airport.
 
 \begin{table}[tbp]
   \caption{Size of inbound sample for each airport considered. Observation period: from June 15 to September 15, 2016.}\label{tab:flights_count}
     \begin{tabular}{lcr}
       \toprule
-      {} & \acs{ICAO} code &  sample size \\
+      {} & \acs{IATA} code &  sample size \\
       airport name                                       &                 &              \\
       \midrule
-      Frankfurt am Main International Airport &     \airp{eddf} &        58167 \\
-      London Gatwick Airport                  &     \airp{egkk} &        39746 \\
-      London Heathrow Airport                 &     \airp{egll} &        56716 \\
-      Amsterdam Airport Schiphol              &     \airp{eham} &        63279 \\
-      Madrid Barajas International Airport    &     \airp{lemd} &        48162 \\
-      Charles de Gaulle International Airport &     \airp{lfpg} &        60122 \\
-      Athens International Airport            &     \airp{lgav} &        29503 \\
-      Rome Fiumicino International Airport    &     \airp{lirf} &        43333 \\
+      Frankfurt am Main International Airport &     \airp{fra} &        58167 \\
+      London Gatwick Airport                  &     \airp{lgw} &        39746 \\
+      London Heathrow Airport                 &     \airp{lhr} &        56716 \\
+      Amsterdam Airport Schiphol              &     \airp{ams} &        63279 \\
+      Madrid Barajas International Airport    &     \airp{mad} &        48162 \\
+      Charles de Gaulle International Airport &     \airp{cgd} &        60122 \\
+      Athens International Airport            &     \airp{ath} &        29503 \\
+      Rome Fiumicino International Airport    &     \airp{fco} &        43333 \\
       \bottomrule
     \end{tabular}
 \end{table}
@@ -330,7 +332,7 @@ The two models will be then compared and contrasted on their prediction capabili
 
 We approximate the intensity of the in-homogeneous Poisson process with a step-function.
 The intensities and the corresponding time intervals are computed using first the \PELT{} algorithm~\citep{killick2012optimal} to detect change-points\footnote{Time points where either the mean or the variance of the arrival \ac{TS} undergoes a \emph{structural} change.} in the arrival stream, and then \DBSCAN{}~\citep{ester1996density,pedregosa2011scikit} to cluster change-points and estimated intensities in the \((t, \lambda)\) plane; the intensity of the learned Poisson process is obtained by the centroid of those clusters.
-This results in the formulation of a non-homogeneous Poisson process whose intensity function is daily periodic. This assumption is partly supported by the results in Figure~\ref{fig:autocorr}, but it is also a simplifying assumption. Airline schedule often change between weekdays and weekends. However, a relatively simple formulation is an appealing feature if one has in mind to use and/or derive analytical results (e.g. using this arrival process in a queue model).
+This results in the formulation of a non-homogeneous Poisson process whose intensity function is daily periodic. The assumption of a 24-hour periodic process is partly supported by the results in Figure~\ref{fig:autocorr}, but it is also a simplifying one. Airline schedule often change between weekdays and weekends. However, a relatively simple formulation is an appealing feature if one has in mind to use and/or derive analytical results (e.g. using this arrival process in a queue model).
 
 The use of \PELT{} is appealing for its low computational cost compared to other change-point detection methods\footnote{As a matter of fact, Functional Pruning Optimal Partitioning~\citep{maidstone2017} might perform even better since the intensity of the process is the only parameter that is going to change under the null.
 However, \PELT{} usage is established and its code well-documented.}~\citep{killick2012optimal}.
@@ -352,7 +354,7 @@ The details of the procedure are described by Algorithm~\ref{Alg:POISSON} below.
     \STATE \COMMENT{\(C\) is a list of length \(n\) that contains 2-dimensional lists of clustered \(t, \lambda\)-points}
     \STATE \(\hat{T} \leftarrow [~] \)
     \STATE \(\hat{L} \leftarrow [~] \)
-    \FOR { \(i = 1\) \TO \(n\) }
+    \FOR { \(k = 1\) \TO \(n\) }
         \STATE \(\hat{t}_k, \hat{l}_k \leftarrow \) \texttt{centroid(C[i])}
         \STATE Append \(\hat{t}_k\) to \(\hat{T}\)
         \STATE Append \(\hat{l}_k\) to \(\hat{L}\)
@@ -361,7 +363,7 @@ The details of the procedure are described by Algorithm~\ref{Alg:POISSON} below.
     \COMMENT{A step function taking on value \(\hat{\lambda}_i\) for \(\hat{t}_i \leq t < \hat{t}_{i+1}\)}
     \RETURN \(\lambda^\ast(t)\)
 \end{algorithmic}
-\caption{Identification of data-driven non-homogeneous non-homogeneous Poisson process}\label{Alg:POISSON}
+\caption{Identification of data-driven non-homogeneous Poisson process}\label{Alg:POISSON}
 \end{algorithm}
 
 \subsubsection{Construction of the \acs{PSRA} process}\label{sec:dm_psra}
@@ -373,14 +375,14 @@ t_i = t^{r}_i + \xi_i \,,
 \end{equation}
 where \(t^{r}_i\) is the regulated arrival time at 40 NM, \(\xi_i\) is a delay that is generated from a regression model for \(\{t^{a}_i - t^{r}_i\}_i\), and \(t^{a}_i\) is the observed arrival time at 40 NM.
 Since the regulated flight plan can change up to 20 minutes before take-off, model (3) is tailored for tactical predictions. However, the regulated flight plan undergoes a number of regulation rounds.
-This means that model~\eqref{eq:psra-like} could be used anytime before take-off with the most recent regulations available.
+This means that model~\eqref{eq:psra-like} could be used anytime before take-off with the most recent regulations available -- with an expectable predictive-performance drop on the observed arrival time.
 
-The model for the delays \(\xi_i\)'s is obtained by training an \(\varepsilon\)-support vector regression model~\citep{cristianini2000introduction} on the following features: flight origin (national, continental, or intercontinental), arrival time according to the regulated flight plan, and day of the week.
+The regression model for the delays \(\xi_i\)'s is obtained by training an \(\varepsilon\)-support vector machine~\citep{cristianini2000introduction} on the following features: flight origin (national, continental, or intercontinental), arrival time according to the regulated flight plan, and day of the week.
 The last two features are encoded as two-dimensional cyclic variables using sine/cosine transformations.
 
-Cross-validation is used for both tuning the hyper-parameters of the support vector machine and for assessing the model performance. The recommendation in this case is use two rounds of cross-validation~\citep{cawley2010over}, respectively called inner and outer, on different train-test splits of the dataset. Since we are dealing with a TS, we split the dataset in k parts and then form k-1 train sets by taking the first j parts and we use the (j+1)th as the test set.
-An inner cross-validation with splits of two weeks each is used to search the optimal value of the parameters \(C\) and \(\varepsilon\) on a logarithmic grid:
-\(\varepsilon\) defines a margin of tolerance within which no penalty (\(C\)) is associated in the training loss function.
+Cross-validation is used for both tuning the hyper-parameters of the support vector machine and for assessing the model performance. The recommendation in this case is use two rounds of cross-validation~\citep{cawley2010over}, respectively called inner and outer, on different train-test splits of the dataset. Since we are dealing with a TS, we split the dataset into $k$ parts, labeled $j = 1,\ldots,k$; then, for $j = 2, \dots, k$, parts $1, \ldots, j-1$ are used as training set to predict part $j$.
+An inner cross-validation with $k = 6$ each is used to search the optimal value of the parameters \(C\) and \(\varepsilon\) on a logarithmic grid:
+\(\varepsilon\) defines a margin of tolerance within which no penalty (\(C\)) is associated in the hinge loss function~\citep{rosasco2004loss}.
 The limited number of features used and its impact on this research are discussed in~Section~\ref{sec:analysis}.
 The simulation procedure is outlined in Algorithm~\ref{Alg:PSRA}.
 
@@ -389,12 +391,13 @@ The simulation procedure is outlined in Algorithm~\ref{Alg:PSRA}.
     \STATE \(T^{r} \leftarrow \) sequence of \emph{regulated} arrival times at 40 NM
     \STATE \(T \leftarrow \) empty list
     \STATE \(X \leftarrow \) matrix of features
-    \STATE \(\Xi \leftarrow \) epsilon-support vector regression
+    \STATE \(\Xi \leftarrow \) epsilon-support vector machine
     \STATE \(C, \varepsilon \leftarrow \) optimal hyper-parameters via inner cross validation
     \FOR {each \(t\) in \(T^{r}\) and each row \(x\) in \(X\)}
         \STATE \(\xi \leftarrow \Xi(x)\)
         \STATE Append \(t + \xi\) to \(T\)
     \ENDFOR
+    \STATE sort \(T\)
     \RETURN \(T\)
 \end{algorithmic}
 \caption{Simulation of data-driven PSRA process}\label{Alg:PSRA}
@@ -409,7 +412,7 @@ The comparison is made on two predictions tasks, namely:
   \item predicting the mean aggregated demand for each 10-minute interval averaged over the last week of the dataset (September 5-11).
 \end{enumerate}
 Both tasks yield a vector of 144 predictions (one for each 10-minute interval), on which we compute the following scores: \ac{MAE}, \ac{MSE}, and \(r^2\).
-An outer cross-validation with splits of one week each is used to compare true demand with that predicted by model~\eqref{eq:psra-like}.
+An outer cross-validation with $k = 12$ each is used to compare true demand with that predicted by model~\eqref{eq:psra-like}.
 Cross-validation of the data-driven Poisson model is not meaningful, because the method is based on clustering and not on the prediction of a known target variable (\emph{ground truth}).
 Evidence supporting this assumption is given in Section~\ref{sec:serial_corr}.
 Further, this assumption has the desirable property of simplifying the model formulation.
@@ -425,9 +428,9 @@ In this section, we present the results of our analysis using the dataset and th
 Figures~\ref{fig:qqplot5-8}-\ref{fig:qqplot5-17} show, for each of the eight airports and three time intervals considered, the QQ-plot of the inter-arrivals against the corresponding fitted Weibull~\eqref{eq:DWeibullPMF}.
 Regardless of the time interval, there is quite a good accordance between empirical and theoretical quantiles in the bulk of the distribution.
 This can be observed as a general flat adherence of the QQ-plot onto the 45-degrees dotted line and should be interpreted as the capability of Weibull inter-arrivals to describe small-to-moderate inter-arrival times, \ie{} situations of high demand.
-However, the goodness of the fit deteriorates on the tails and it typically shows over-dispersion, which can be severe at \airp{eddf}, \airp{eham}, \airp{lemd}, and \airp{lfpg}.
-A remarkable exception is \airp{egll}, for which the demand fluctuates around the value of 40 aircraft/hour (corresponding to an average inter-arrival of 90 seconds).
-Accordingly, \airp{egll} exhibits the smallest degree of over-dispersion on the tails among the airports considered in this paper.
+However, the goodness of the fit deteriorates on the tails and it typically shows over-dispersion, which can be severe at \airp{fra}, \airp{ams}, \airp{mad}, and \airp{cgd}.
+A remarkable exception is \airp{lhr}, for which the demand fluctuates around the value of 40 aircraft/hour (corresponding to an average inter-arrival of 90 seconds).
+Accordingly, \airp{lhr} exhibits the smallest degree of over-dispersion on the tails among the airports considered in this paper.
 
 Table~\ref{tab:fitted} reports the parameters \(q\) and \(\beta\), the mean of the fitted distribution, the Kolmogorov-Smirnov \(D\)-statistic, and the \(p\)-value of the corresponding goodness-of-fit test for each time interval and airport considered.
 The fitted shape-parameter \(\beta\) is always fairly close to \(1\), meaning that the fitting Weibull looks like an exponential/geometrical.
@@ -443,30 +446,30 @@ This is due to the large size of the sample considered, which makes the test ver
                    &             &   \(q\) & \(\beta\) &    mean & \(D\)-stat. & \(p\)-value \\
       time & airport &       &         &         &           &           \\
       \midrule
-      08:00--09:30 & \airp{eddf} & 0.992 &   1.046 &  93.131 &     0.020 &      0.03 \\
-                   & \airp{egkk} & 0.998 &   1.127 & 214.506 &     0.032 &      0.02 \\
-                   & \airp{egll} & 0.995 &   1.135 & 103.273 &     0.024 &     <0.01 \\
-                   & \airp{eham} & 0.993 &   1.118 &  82.209 &     0.033 &     <0.01 \\
-                   & \airp{lemd} & 0.996 &   1.064 & 166.540 &     0.019 &      0.21 \\
-                   & \airp{lfpg} & 0.993 &   1.143 &  71.336 &     0.033 &     <0.01 \\
-                   & \airp{lgav} & 0.996 &   1.000 & 261.533 &     0.021 &      0.40 \\
-                   & \airp{lirf} & 0.994 &   1.060 & 129.793 &     0.023 &      0.03 \\
-      12:00--13:30 & \airp{eddf} & 0.994 &   1.064 & 122.668 &     0.018 &      0.13 \\
-                   & \airp{egkk} & 0.997 &   1.166 & 137.588 &     0.033 &     <0.01 \\
-                   & \airp{egll} & 0.995 &   1.158 &  90.262 &     0.026 &     <0.01 \\
-                   & \airp{eham} & 0.994 &   1.157 &  74.990 &     0.035 &     <0.01 \\
-                   & \airp{lemd} & 0.994 &   1.041 & 133.073 &     0.016 &      0.29 \\
-                   & \airp{lfpg} & 0.996 &   1.119 & 127.154 &     0.027 &     <0.01 \\
-                   & \airp{lgav} & 0.994 &   1.000 & 175.291 &     0.013 &      0.74 \\
-                   & \airp{lirf} & 0.992 &   1.067 &  88.120 &     0.021 &      0.01 \\
-      18:00--19:30 & \airp{eddf} & 0.990 &   1.040 &  82.466 &     0.015 &      0.12 \\
-                   & \airp{egkk} & 0.997 &   1.167 & 135.505 &     0.034 &     <0.01 \\
-                   & \airp{egll} & 0.996 &   1.199 &  85.679 &     0.031 &     <0.01 \\
-                   & \airp{eham} & 0.993 &   1.195 &  61.895 &     0.033 &     <0.01 \\
-                   & \airp{lemd} & 0.995 &   1.095 & 116.381 &     0.013 &      0.43 \\
-                   & \airp{lfpg} & 0.995 &   1.130 &  93.981 &     0.027 &     <0.01 \\
-                   & \airp{lgav} & 0.996 &   1.064 & 189.090 &     0.013 &      0.77 \\
-                   & \airp{lirf} & 0.994 &   1.072 & 117.987 &     0.016 &      0.21 \\
+      08:00--09:30 & \airp{fra} & 0.992 &   1.046 &  93.131 &     0.020 &      0.03 \\
+                   & \airp{lgw} & 0.998 &   1.127 & 214.506 &     0.032 &      0.02 \\
+                   & \airp{lhr} & 0.995 &   1.135 & 103.273 &     0.024 &     <0.01 \\
+                   & \airp{ams} & 0.993 &   1.118 &  82.209 &     0.033 &     <0.01 \\
+                   & \airp{mad} & 0.996 &   1.064 & 166.540 &     0.019 &      0.21 \\
+                   & \airp{cgd} & 0.993 &   1.143 &  71.336 &     0.033 &     <0.01 \\
+                   & \airp{ath} & 0.996 &   1.000 & 261.533 &     0.021 &      0.40 \\
+                   & \airp{fco} & 0.994 &   1.060 & 129.793 &     0.023 &      0.03 \\
+      12:00--13:30 & \airp{fra} & 0.994 &   1.064 & 122.668 &     0.018 &      0.13 \\
+                   & \airp{lgw} & 0.997 &   1.166 & 137.588 &     0.033 &     <0.01 \\
+                   & \airp{lhr} & 0.995 &   1.158 &  90.262 &     0.026 &     <0.01 \\
+                   & \airp{ams} & 0.994 &   1.157 &  74.990 &     0.035 &     <0.01 \\
+                   & \airp{mad} & 0.994 &   1.041 & 133.073 &     0.016 &      0.29 \\
+                   & \airp{cgd} & 0.996 &   1.119 & 127.154 &     0.027 &     <0.01 \\
+                   & \airp{ath} & 0.994 &   1.000 & 175.291 &     0.013 &      0.74 \\
+                   & \airp{fco} & 0.992 &   1.067 &  88.120 &     0.021 &      0.01 \\
+      18:00--19:30 & \airp{fra} & 0.990 &   1.040 &  82.466 &     0.015 &      0.12 \\
+                   & \airp{lgw} & 0.997 &   1.167 & 135.505 &     0.034 &     <0.01 \\
+                   & \airp{lhr} & 0.996 &   1.199 &  85.679 &     0.031 &     <0.01 \\
+                   & \airp{ams} & 0.993 &   1.195 &  61.895 &     0.033 &     <0.01 \\
+                   & \airp{mad} & 0.995 &   1.095 & 116.381 &     0.013 &      0.43 \\
+                   & \airp{cgd} & 0.995 &   1.130 &  93.981 &     0.027 &     <0.01 \\
+                   & \airp{ath} & 0.996 &   1.064 & 189.090 &     0.013 &      0.77 \\
+                   & \airp{fco} & 0.994 &   1.072 & 117.987 &     0.016 &      0.21 \\
       \bottomrule
     \end{tabular}
 \end{table}
@@ -494,7 +497,7 @@ This is due to the large size of the sample considered, which makes the test ver
 
 Figure~\ref{fig:AvgArrivals} shows the daily mean profile of the demand along its 95\% point-wise confidence band.
 Most of the airports analyzed in this paper show the characteristic \emph{wavy pattern} for arrivals, typical of airports hosting hub-an-spoke operations.
-A notable exception is \airp{egll}, which has a fairly constant mean arrival rate and a corresponding arrival process that is characterized by a single regime: the demand oscillates around 7 arrivals every 10 minutes --the declared arrival capacity is 45 aircraft/hour.
+A notable exception is \airp{lhr}, which has a fairly constant mean arrival rate and a corresponding arrival process that is characterized by a single regime: the demand oscillates around 7 arrivals every 10 minutes --the declared arrival capacity is 45 aircraft/hour.
 This also explains why Heathrow shows the best fit with a nearly-exponential distribution in Figures~\ref{fig:qqplot5-8}--\ref{fig:qqplot5-17}.
 
 %Figure~\ref{fig:AvgArrivals} shows the average demand over the day when aggregated by intervals of 10 minutes. The figure shows the mean number of arrivals along with 99\% pointwise confindence intervals. For many of the airports considered, the plot of the average daily arrivals shows the characteristic \emph{wavy pattern} typical of airports hosting hub-an-spoke operations. A notable exception is Heathrow, which has a nearly constant arrival rate and thus shows the best fit with a nearly-exponential distribution in Figures~\ref{fig:qqplot5-8}--\ref{fig:qqplot5-17}.
@@ -508,7 +511,7 @@ First, all airports present a statistically significant strong negative lag-1 co
 These correlations cannot be appreciated in full from Figure~\ref{fig:autocorr} because the \(y\)-axis is clipped at \(\pm 0.2\) for making other correlations more readable. For this reason, their exact numerical value is reported in Table~\ref{tab:lag01}.
 The presence of these correlations suggests that the net variation of the demand\footnote{The demand \ac{TS} is made stationary by taking first-order differences, see Section~\ref{sec:dm_serial_corr}.} over an interval of 10 minutes is negatively correlated with the demand variation in the following 10 minutes.
 In other words, intervals where the demand increases (resp.\ decreases) are more likely to be followed by intervals where the demand decreases (resp.\ increases).
-This property, which can be also observed in Figure~\ref{fig:AvgArrivals}, might have an interesting connection with capacity constraints.
+This property, which can also be guessed from Figure~\ref{fig:AvgArrivals}, might have an interesting connection with capacity constraints.
 %and demonstrates that the demand is bounded by capacity.
 In fact, if an interval of increased demand were likely followed by another interval of increased demand, then the capacity of the airport could be temporarily exceeded.
 
@@ -521,7 +524,7 @@ These correlations are not strong in absolute terms, yet they are the strongest 
 
 \begin{sidewaysfigure}
   \includegraphics[width=\textwidth]{Autocorr}
-  \caption{Autocorrelation of arrivals \ac{TS} aggregated by intervals of 10 minutes. Shared areas mark the limits of statistical significance at the 99\% level by Bartlett's Formula. For the sake of readability, the \(y\)-axis of the autocorrelation (1st column) is capped at \(\pm 0.2\). The values of the lag-0 and lag-1 correlations are off scale and reported by Table~\ref{tab:lag01}.}\label{fig:autocorr}
+  \caption{Autocorrelation of arrivals \ac{TS} aggregated by intervals of 10 minutes. Shared areas mark the limits of statistical significance at the 99\% level by Bartlett's Formula. For the sake of readability, the \(y\)-axis of the autocorrelation (1st column) is capped at \(\pm 0.2\). The values of the lag-0 and lag-1 correlations are off scale, and the latter aereported by Table~\ref{tab:lag01}.}\label{fig:autocorr}
 \end{sidewaysfigure}
 
 \begin{table}[tbp]
@@ -529,16 +532,16 @@ These correlations are not strong in absolute terms, yet they are the strongest 
   \caption{Values of lag-1 autocorrelations.}\label{tab:lag01}
   \begin{tabular}{lr}
     \toprule
-    \acs{ICAO} code & lag-1 autocorr.\\
+    \acs{IATA} code & lag-1 autocorr.\\
     \midrule
-    \airp{eddf} & -0.447\\
-    \airp{egkk} & -0.526\\
-    \airp{egll} & -0.440\\
-    \airp{eham} & -0.359\\
-    \airp{lemd} & -0.466\\
-    \airp{lfpg} & -0.415\\
-    \airp{lgav} & -0.479\\
-    \airp{lirf} & -0.535\\
+    \airp{fra} & -0.447\\
+    \airp{lgw} & -0.526\\
+    \airp{lhr} & -0.440\\
+    \airp{ams} & -0.359\\
+    \airp{mad} & -0.466\\
+    \airp{cgd} & -0.415\\
+    \airp{ath} & -0.479\\
+    \airp{fco} & -0.535\\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -547,7 +550,7 @@ Figure~\ref{fig:correlations_true} shows the Pearson's correlation \(\rho_{t_i, 
 The demand variation is computed as the difference between the number of arrivals observed from \(t^{a}_i\) data and the number of arrivals that were expected according to \(t^{r}_i\) data.
 The value of \(\rho_{t_i, t_{i+1}}\) is mostly negative, especially during normal operations hours.
 The majority of these correlations are different or borderline-different from zero at a 5\% significance level.
-This finding is somehow expected in view of the lag-1 autocorrelations reported by Table~\ref{tab:lag01}.
+This finding is expected in view of the lag-1 autocorrelations reported by Table~\ref{tab:lag01}.
 \begin{kpt}
 	The sign of the correlations is in line with the general result that \ac{PSRA} generate negatively autocorrelated streams~\citep{guadagni2011queueing}.
   Please note that~\citet{guadagni2011queueing} compute correlations from the observed inbound stream, but have a equally-spaced-in-time arrival schedule.  In our formulation, pre-scheduled arrivals are not equally spaced, but come from the regulated flight plan.
@@ -561,7 +564,7 @@ This finding is somehow expected in view of the lag-1 autocorrelations reported 
 % On this key point, it is important to observe  that~\citet{guadagni2011queueing} compute correlations from the observed inbound stream, but have a equally-spaced-in-time arrival schedule.
 
 % \begin{kpt}
-  The negative sign of correlations is a very appealing feature of the model as it captures bounds on the available capacity of both terminal airspace and arrival airport.
+  The negative sign of correlations is a very appealing feature of the model as it reflects bounds on the available capacity of both terminal airspace and arrival airport.
   If demand variations were mostly uncorrelated or even positively correlated, random fluctuations in the inbound flow might temporarily exceed the capacity of airports and/or terminal sectors.
   On the contrary, the regulated schedule imposes a structure in the sequence of arrivals~\eqref{eq:psra-like}.
 % \end{kpt}
@@ -593,7 +596,7 @@ The values of \(\hat{t}_i\) and \(\hat{\lambda}_i\) are reported by Table~\ref{A
 
 \begin{sidewaysfigure}
     \includegraphics[width=\textwidth]{DDPoisson}
-    \caption{Data-driven modeling of non-homogeneous Poisson process. The \PELT{} algorithms returns a sequence of couples \((t_j,\lambda_{t_j})\), where \(\lambda_{t_j}\) is the intensity of the Poisson process in the interval \([t_j, t_{j+1}\)). The couples are successively clustered via \DBSCAN{} (outliers are not displayed). The clusters in the plane \((t,\lambda)\) are shown superimposed to the daily average arrivals at each airport.}\label{fig:poisson_segmentation}
+    \caption{Result of \DBSCAN{} clustering after \PELT{} changepoint analysis. Points belonging to the same clusters are coloured with the same colour. The clustering result is shown superimposed to the daily average from Figure~\ref{fig:AvgArrivals}.}\label{fig:poisson_segmentation}
 \end{sidewaysfigure}
 
 \subsubsection{Construction of the \acs{PSRA} process}\label{sec:psra}
@@ -614,14 +617,14 @@ The \(r^2\) metric is often around 0.5, meaning that the model is capturing a go
     \toprule
     airport &       C &    \(\varepsilon\) &       \acs{MAE} &       \acs{MSE} &        \(r^2\) \\
     \midrule
-    \airp{eddf} &   100.0 &  100.000 &  0.055680 &  0.330237 &  0.034639 \\
-    \airp{egkk} &  1000.0 &    0.001 &  0.024724 &  0.088728 &  0.027090 \\
-    \airp{egll} &   100.0 &    0.100 &  0.042192 &  0.257391 &  0.026009 \\
-    \airp{eham} &    10.0 &  100.000 &  0.037729 &  0.296439 &  0.023622 \\
-    \airp{lemd} &   100.0 &  100.000 &  0.042015 &  0.205384 &  0.024280 \\
-    \airp{lfpg} &   100.0 &    0.010 &  0.025096 &  0.147226 &  0.018576 \\
-    \airp{lgav} &  1000.0 &    1.000 &  0.034228 &  0.119433 &  0.042989 \\
-    \airp{lirf} &  1000.0 &    1.000 &  0.024727 &  0.146581 &  0.026880 \\
+    \airp{fra} &   100.0 &  100.000 &  0.055680 &  0.330237 &  0.034639 \\
+    \airp{lgw} &  1000.0 &    0.001 &  0.024724 &  0.088728 &  0.027090 \\
+    \airp{lhr} &   100.0 &    0.100 &  0.042192 &  0.257391 &  0.026009 \\
+    \airp{ams} &    10.0 &  100.000 &  0.037729 &  0.296439 &  0.023622 \\
+    \airp{mad} &   100.0 &  100.000 &  0.042015 &  0.205384 &  0.024280 \\
+    \airp{cgd} &   100.0 &    0.010 &  0.025096 &  0.147226 &  0.018576 \\
+    \airp{ath} &  1000.0 &    1.000 &  0.034228 &  0.119433 &  0.042989 \\
+    \airp{fco} &  1000.0 &    1.000 &  0.024727 &  0.146581 &  0.026880 \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -634,14 +637,14 @@ The \(r^2\) metric is often around 0.5, meaning that the model is capturing a go
     \toprule
     airport &  \acs{MAE} (\(\mu\)) &  \acs{MAE} (\(\sigma\)) &  \acs{MSE} (\(\mu\)) &  \acs{MSE} (\(\sigma\)) &  \(r^2\) (\(\mu\)) &  \(r^2\) (\(\sigma\)) \\
     \midrule
-    \airp{eddf} & 1.591 & 0.071 & 5.531 & 0.366 & 0.594 & 0.036 \\
-    \airp{egkk} & 1.436 & 0.043 & 3.911 & 0.204 & 0.126 & 0.069 \\
-    \airp{egll} & 1.582 & 0.061 & 5.414 & 0.370 & 0.509 & 0.033 \\
-    \airp{eham} & 1.831 & 0.078 & 6.490 & 0.530 & 0.530 & 0.041 \\
-    \airp{lemd} & 1.563 & 0.044 & 4.765 & 0.281 & 0.378 & 0.035 \\
-    \airp{lfpg} & 1.700 & 0.059 & 5.477 & 0.323 & 0.500 & 0.033 \\
-    \airp{lgav} & 1.199 & 0.040 & 2.752 & 0.156 & 0.141 & 0.052 \\
-    \airp{lirf} & 1.356 & 0.037 & 3.844 & 0.143 & 0.514 & 0.026 \\
+    \airp{fra} & 1.591 & 0.071 & 5.531 & 0.366 & 0.594 & 0.036 \\
+    \airp{lgw} & 1.436 & 0.043 & 3.911 & 0.204 & 0.126 & 0.069 \\
+    \airp{lhr} & 1.582 & 0.061 & 5.414 & 0.370 & 0.509 & 0.033 \\
+    \airp{ams} & 1.831 & 0.078 & 6.490 & 0.530 & 0.530 & 0.041 \\
+    \airp{mad} & 1.563 & 0.044 & 4.765 & 0.281 & 0.378 & 0.035 \\
+    \airp{cgd} & 1.700 & 0.059 & 5.477 & 0.323 & 0.500 & 0.033 \\
+    \airp{ath} & 1.199 & 0.040 & 2.752 & 0.156 & 0.141 & 0.052 \\
+    \airp{fco} & 1.356 & 0.037 & 3.844 & 0.143 & 0.514 & 0.026 \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -670,21 +673,21 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
     \toprule
     airport    & prediction & model & \acs{MAE} & \acs{MSE} & \(r^2\)  \\
     \midrule
-    \airp{eddf} & Sep 5-11  & \acs{PSRA} &  0.451 &   0.398 &  0.964 \\
+    \airp{fra} & Sep 5-11  & \acs{PSRA} &  0.451 &   0.398 &  0.964 \\
          &                  & Poisson    &  1.624 &   5.199 &  0.531 \\
-    \airp{egkk} & Sep 5-11  & \acs{PSRA} &  0.320 &   0.187 &  0.920 \\
+    \airp{lgw} & Sep 5-11  & \acs{PSRA} &  0.320 &   0.187 &  0.920 \\
          &                  & Poisson    &  0.748 &   0.928 &  0.602 \\
-    \airp{egll} & Sep 5-11  & \acs{PSRA} &  0.395 &   0.355 &  0.957 \\
+    \airp{lhr} & Sep 5-11  & \acs{PSRA} &  0.395 &   0.355 &  0.957 \\
          &                  & Poisson    &  0.959 &   1.661 &  0.798 \\
-    \airp{eham} & Sep 5-11  & \acs{PSRA} &  0.629 &   0.875 &  0.921 \\
+    \airp{ams} & Sep 5-11  & \acs{PSRA} &  0.629 &   0.875 &  0.921 \\
          &                  & Poisson    &  1.262 &   3.635 &  0.672 \\
-    \airp{lemd} & Sep 5-11  & \acs{PSRA} &  0.555 &   0.593 &  0.894 \\
+    \airp{mad} & Sep 5-11  & \acs{PSRA} &  0.555 &   0.593 &  0.894 \\
          &                  & Poisson    &  0.876 &   1.491 &  0.733 \\
-    \airp{lfpg} & Sep 5-11  & \acs{PSRA} &  0.520 &   0.516 &  0.932 \\
+    \airp{cgd} & Sep 5-11  & \acs{PSRA} &  0.520 &   0.516 &  0.932 \\
          &                  & Poisson    &  1.199 &   2.764 &  0.635 \\
-    \airp{lgav} & Sep 5-11  & \acs{PSRA} &  0.289 &   0.143 &  0.906 \\
+    \airp{ath} & Sep 5-11  & \acs{PSRA} &  0.289 &   0.143 &  0.906 \\
          &                  & Poisson    &  0.704 &   0.869 &  0.427 \\
-    \airp{lirf} & Sep 5-11  & \acs{PSRA} &  0.354 &   0.252 &  0.956 \\
+    \airp{fco} & Sep 5-11  & \acs{PSRA} &  0.354 &   0.252 &  0.956 \\
          &                  & Poisson    &  1.668 &   6.104 & -0.064 \\
     \bottomrule
   \end{tabular}
@@ -702,21 +705,21 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
     \toprule
     airport    & prediction & model & \acs{MAE} & \acs{MSE} & \(r^2\)  \\
     \midrule
-    \airp{eddf} & Sep 14    & \acs{PSRA} &  1.611 &   5.472 &  0.597 \\
+    \airp{fra} & Sep 14    & \acs{PSRA} &  1.611 &   5.472 &  0.597 \\
          &                  & Poisson    &  2.597 &  11.972 &  0.119 \\
-    \airp{egkk} & Sep 14    & \acs{PSRA} &  1.292 &   3.069 &  0.286 \\
+    \airp{lgw} & Sep 14    & \acs{PSRA} &  1.292 &   3.069 &  0.286 \\
          &                  & Poisson    &  1.660 &   5.174 & -0.203 \\
-    \airp{egll} & Sep 14    & \acs{PSRA} &  1.646 &   5.979 &  0.427 \\
+    \airp{lhr} & Sep 14    & \acs{PSRA} &  1.646 &   5.979 &  0.427 \\
          &                  & Poisson    &  1.944 &   8.236 &  0.211 \\
-    \airp{eham} & Sep 14    & \acs{PSRA} &  1.826 &   6.493 &  0.541 \\
+    \airp{ams} & Sep 14    & \acs{PSRA} &  1.826 &   6.493 &  0.541 \\
          &                  & Poisson    &  2.375 &  10.347 &  0.268 \\
-    \airp{lemd} & Sep 14    & \acs{PSRA} &  1.618 &   5.688 &  0.332 \\
+    \airp{mad} & Sep 14    & \acs{PSRA} &  1.618 &   5.688 &  0.332 \\
          &                  & Poisson    &  2.042 &   8.611 & -0.012 \\
-    \airp{lfpg} & Sep 14    & \acs{PSRA} &  1.958 &   7.778 &  0.170 \\
+    \airp{cgd} & Sep 14    & \acs{PSRA} &  1.958 &   7.778 &  0.170 \\
          &                  & Poisson    &  2.785 &  13.813 & -0.475 \\
-    \airp{lgav} & Sep 14    & \acs{PSRA} &  1.243 &   3.396 & -0.072 \\
+    \airp{ath} & Sep 14    & \acs{PSRA} &  1.243 &   3.396 & -0.072 \\
          &                  & Poisson    &  1.549 &   4.771 & -0.506 \\
-    \airp{lirf} & Sep 14    & \acs{PSRA} &  1.222 &   3.444 &  0.561 \\
+    \airp{fco} & Sep 14    & \acs{PSRA} &  1.222 &   3.444 &  0.561 \\
          &                  & Poisson    &  2.222 &   9.097 & -0.159 \\
     \bottomrule
   \end{tabular}
@@ -728,15 +731,15 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
   The shape parameter of the fitted Weibull was sufficiently close to unity to seemingly justify the \emph{classical} assumption of Poisson arrivals\footnote{Necessary and sufficient condition for a random process to be Poisson is that inter-arrival times are \emph{independent} and exponentially distributed.}.
   The null hypothesis of Weibull-distributed \ac{IID} inter-arrivals could often be rejected based on the Kolmogorov-Smirnov goodness-of-fit test, yet this finding requires caution: due to the large sample size, the test is extremely powerful (especially at the most congested airports) and likely to flag even small deviations of the empirical distribution from the theoretical one.
   The average demand plotted in Figure~\ref{fig:AvgArrivals} suggests that the goodness-of-fit might be related to the wavy variation of the demand.
-  On the one hand, QQ-plots in Figures~\ref{fig:qqplot5-8}-\ref{fig:qqplot5-17} show that the best fit is achieved by airports where the demand is stable over time, \eg{} \airp{egkk} or \airp{egll}.
-  On the other hand, the selected time windows often span moments of lower and higher demand, so that a better fit might be probably obtained by letting the parameter $\beta$ vary over time.
+  On the one hand, QQ-plots in Figures~\ref{fig:qqplot5-8}-\ref{fig:qqplot5-17} show that the best fit is achieved by airports where the demand is stable over time, \eg{} \airp{lgw} or \airp{lhr}.
+  On the other hand, the selected time windows often span moments of lower and higher demand, so that a better fit might be probably obtained by letting $\beta$, the shape parameter in~\eqref{eq:DWeibullPMF} vary over time.
   Yet, the analysis of the demand correlations in Figure 6 indicates that a non-homogeneous Poisson process is not realistic anyway due to the independence of its increments. In fact, the demand over two consecutive intervals is characterized by non-zero correlations (point estimates mostly negative and often significant at the 5\% level), which in contrast with the assumption of independent increments.
 
   Homogeneous or not, Poisson processes remain a popular choice for modeling inbound air traffic~\citep{gwiggner2014data}.
-  Thus, we proposed an innovative, data-driven approach to the modeling of a non-homogeneous Poisson process by use of \PELT{} (a change-point detection algorithm) and \DBSCAN{} (clustering).
+  Thus, we proposed a novel data-driven approach to the modeling of a non-homogeneous Poisson process by use of \PELT{} (a change-point detection algorithm) and \DBSCAN{} (clustering).
   Poisson arrivals defined this way were contrasted with a \ac{PSRA} point process, where the observed arrival time arises as the sum of the last-agreed arrival time and a random fluctuation.
   A parametric distribution is the typical modeling solution for the the delays \(\xi_i\) in~\eqref{eq:psra-like}, but we introduced an element of novelty by adopting also for \ac{PSRA} a data-driven approach.
-  We used a support vector regression model but other choices, like ordinary/generalized least squares or other penalized regressions, are viable options worth to be explored.
+  We used a support vector machine but other choices, like ordinary/generalized least squares or other penalized regressions, are viable options worth to be explored.
 
   The \ac{PSRA} model presented here could be hastily criticized on the limited number of features used.
   While it is true that a larger number of covariates could be obtained from the \ac{DDR}, recent constrains imposed to the use of such repository limited the amount of data that we could use.
@@ -802,7 +805,7 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
 %   Figure~\ref{fig:DD_AIC} shows the change-point identified by \PELT{} and the resulting clustering via \DBSCAN{} when \PELT{} uses the \ac{AIC} penalty.
 %   In this setting, \PELT{} is much more sensible and detects regime changes in correspondence of maxima and minima of the average demand.
 %   The resulting description of the arrival stream in terms of a Poisson process is hence richer and follows more closely the average demand.
-%   However, the increased sensibility in the change point detection comes at the price of a \emph{noisy} distribution of change-points in the \((t,\lambda)\) plane, which might be difficult to reconstruct via \DBSCAN{} (see \airp{egkk}).
+%   However, the increased sensibility in the change point detection comes at the price of a \emph{noisy} distribution of change-points in the \((t,\lambda)\) plane, which might be difficult to reconstruct via \DBSCAN{} (see \airp{lgw}).
 %
 %   \begin{figure}
 %       \includegraphics[width=\textwidth]{DDPoisson_AIC}
@@ -839,7 +842,7 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
 %   This appendix details the intensity function of the Poisson process obtained in Section~\ref{sec:pois}.
 %   The intensity function is a periodic right-continuous step-function, which takes on value \(\hat{\lambda}\) between two consecutive values of \(\hat{t}\).
 %   The values of \(\hat{t}\) and \(\hat{\lambda}\) are reported for each airport by Table~\ref{tab:poisson_segmentation} below.
-%   The table shows how the model correctly captures the typical hourly landing rate in the moments of highest demand, when we expect the airport to operate close to its maximum capacity. For \airp{egll}, \(\lambda = 0.64\) aircraft/min corresponds to \(38.4\) aircraft/hour, which is close to the maximum declared capacity of 45; for \airp{eddf}, \(\lambda = 0.90\) aircraft/min corresponds to \(54\) aircraft/hour, which is close to the maximum declared capacity of 60; finally, for \airp{eham}, \(\lambda = 1.13\) aircraft/min corresponds to \(67.8\) aircraft/hour, which is very close to the the maximum declared capacity of 68 (capacity data from \url{https://ext.eurocontrol.int/airport_corner_public/}).
+%   The table shows how the model correctly captures the typical hourly landing rate in the moments of highest demand, when we expect the airport to operate close to its maximum capacity. For \airp{lhr}, \(\lambda = 0.64\) aircraft/min corresponds to \(38.4\) aircraft/hour, which is close to the maximum declared capacity of 45; for \airp{fra}, \(\lambda = 0.90\) aircraft/min corresponds to \(54\) aircraft/hour, which is close to the maximum declared capacity of 60; finally, for \airp{ams}, \(\lambda = 1.13\) aircraft/min corresponds to \(67.8\) aircraft/hour, which is very close to the the maximum declared capacity of 68 (capacity data from \url{https://ext.eurocontrol.int/airport_corner_public/}).
 %
 %   \begin{center}
 %     \begin{longtable}{lll}
@@ -866,7 +869,7 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
 %       \bottomrule
 %       \endlastfoot
 %
-%       \airp{eddf} & 04:32 UTC+02 &  0.2657 aircraft/min \\
+%       \airp{fra} & 04:32 UTC+02 &  0.2657 aircraft/min \\
 %            & 06:41 UTC+02 &  0.7325 aircraft/min \\
 %            & 08:55 UTC+02 &  0.4991 aircraft/min \\
 %            & 10:33 UTC+02 &  0.8550 aircraft/min \\
@@ -875,15 +878,15 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
 %            & 16:31 UTC+02 &  0.4270 aircraft/min \\
 %            & 18:29 UTC+02 &  0.9034 aircraft/min \\
 %            & 22:04 UTC+02 &  0.1182 aircraft/min \\
-%       \airp{egkk} & 02:40 UTC+01 &  0.0671 aircraft/min \\
+%       \airp{lgw} & 02:40 UTC+01 &  0.0671 aircraft/min \\
 %            & 06:54 UTC+01 &  0.2858 aircraft/min \\
 %            & 10:10 UTC+01 &  0.4195 aircraft/min \\
 %            & 23:26 UTC+01 &  0.2328 aircraft/min \\
-%       \airp{egll} & 00:25 UTC+01 &  0.0000 aircraft/min \\
+%       \airp{lhr} & 00:25 UTC+01 &  0.0000 aircraft/min \\
 %            & 04:56 UTC+01 &  0.1409 aircraft/min \\
 %            & 07:16 UTC+01 &  0.6410 aircraft/min \\
 %            & 22:24 UTC+01 &  0.1424 aircraft/min \\
-%       \airp{eham} & 02:47 UTC+02 &  0.0537 aircraft/min \\
+%       \airp{ams} & 02:47 UTC+02 &  0.0537 aircraft/min \\
 %            & 06:30 UTC+02 &  0.4222 aircraft/min \\
 %            & 07:25 UTC+02 &  0.9062 aircraft/min \\
 %            & 08:53 UTC+02 &  0.4416 aircraft/min \\
@@ -896,7 +899,7 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
 %            & 18:26 UTC+02 &  1.1255 aircraft/min \\
 %            & 19:52 UTC+02 &  0.4881 aircraft/min \\
 %            & 22:26 UTC+02 &  0.1942 aircraft/min \\
-%       \airp{lemd} & 01:00 UTC+02 &  0.0386 aircraft/min \\
+%       \airp{mad} & 01:00 UTC+02 &  0.0386 aircraft/min \\
 %            & 04:30 UTC+02 &  0.1240 aircraft/min \\
 %            & 06:12 UTC+02 &  0.0293 aircraft/min \\
 %            & 07:14 UTC+02 &  0.3511 aircraft/min \\
@@ -908,7 +911,7 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
 %            & 20:01 UTC+02 &  0.6972 aircraft/min \\
 %            & 22:33 UTC+02 &  0.3309 aircraft/min \\
 %            & 23:35 UTC+02 &  0.1493 aircraft/min \\
-%       \airp{lfpg} & 01:24 UTC+02 &  0.0530 aircraft/min \\
+%       \airp{cgd} & 01:24 UTC+02 &  0.0530 aircraft/min \\
 %            & 05:18 UTC+02 &  0.1852 aircraft/min \\
 %            & 07:08 UTC+02 &  0.5127 aircraft/min \\
 %            & 08:06 UTC+02 &  1.0003 aircraft/min \\
@@ -921,12 +924,12 @@ Table~\ref{tab:predictions_last_day} shows indeed that \ac{PSRA} still have a hi
 %            & 20:01 UTC+02 &  0.4632 aircraft/min \\
 %            & 22:16 UTC+02 &  0.3120 aircraft/min \\
 %            & 23:21 UTC+02 &  0.0631 aircraft/min \\
-%       \airp{lgav} & 01:27 UTC+03 &  0.0445 aircraft/min \\
+%       \airp{ath} & 01:27 UTC+03 &  0.0445 aircraft/min \\
 %            & 06:45 UTC+03 &  0.4592 aircraft/min \\
 %            & 07:16 UTC+03 &  0.2315 aircraft/min \\
 %            & 12:03 UTC+03 &  0.3028 aircraft/min \\
 %            & 21:27 UTC+03 &  0.1993 aircraft/min \\
-%       \airp{lirf} & 03:29 UTC+02 &  0.1019 aircraft/min \\
+%       \airp{fco} & 03:29 UTC+02 &  0.1019 aircraft/min \\
 %            & 06:47 UTC+02 &  0.5395 aircraft/min \\
 %            & 09:24 UTC+02 &  0.3155 aircraft/min \\
 %            & 11:49 UTC+02 &  0.6698 aircraft/min \\
