@@ -128,7 +128,7 @@
 \section{\PELT{} with \acs{MBIC} and \acs{AIC} penalty}\label{sec:appa}
 
   This appendix offers a sensitivity analysis of the \PELT{} algorithm with respect to the result of Algorithm~\ref{Main-Alg:POISSON}.
-  Figure~\ref{fig:DD_MBIC} shows the change-point identified by \PELT{} and the resulting clustering via \DBSCAN{} when \PELT{} uses the default \ac{MBIC} penalty.
+  Figure~\ref{fig:DD_MBIC} shows the change-points identified by \PELT{} and the resulting clustering via \DBSCAN{} when \PELT{} uses the default \ac{MBIC} penalty.
   In this case, the change-points returned by \PELT{} are so well-concentrated that the clustering step is barely needed.
   Accordingly, the number of outliers returned by \DBSCAN{} (shown in black) is extremely limited.
   Identified clusters are limited in number and typically located early in the morning or late in the evening.
@@ -139,7 +139,7 @@
       \caption{Data-driven modeling of non-homogeneous Poisson process; \ac{MBIC} penalty. \DBSCAN{} outliers are drawn in black.}\label{fig:DD_MBIC}
   \end{figure}
 
-  Figure~\ref{fig:DD_AIC} shows the change-point identified by \PELT{} and the resulting clustering via \DBSCAN{} when \PELT{} uses the \ac{AIC} penalty.
+  Figure~\ref{fig:DD_AIC} shows the change-points identified by \PELT{} and the resulting clustering via \DBSCAN{} when \PELT{} uses the \ac{AIC} penalty.
   In this setting, \PELT{} is much more sensible and detects regime changes in correspondence of maxima and minima of the average demand.
   The resulting description of the arrival stream in terms of a Poisson process is hence richer and follows more closely the average demand.
   However, the increased sensibility in the change point detection comes at the price of a \emph{noisy} distribution of change-points in the \((t,\lambda)\) plane, which might be difficult to reconstruct via \DBSCAN{} (see \airp{lgw}).
@@ -152,23 +152,23 @@
 \section{Continuous wavelet transform of demand time series}\label{sec:appc}
 
 Figure~\ref{fig:cwt} shows a continuous wavelet transform of the demand from the week August 01--07, 2016.
-On the \(x\)-axis there is time and on the \(y\)-axis the scale parameter of the Ricker wavelet, the color bar shows the value of the coefficients of the transform. The plot highlights the presence of a low-frequency component with daily periodicity and high-frequency demand peaks with sufficient regularity, the strength and frequency of which varies across airports.
+The \(x\)-axis shows the time and the \(y\)-axis shows the scale parameter of the Ricker wavelet. The color bar shows the value of the coefficients of the transform. The plot highlights the presence of a low-frequency component with daily periodicity and high-frequency demand peaks with sufficient regularity, the strength and frequency of which vary across airports.
 
 % replace this with CWT
 \begin{sidewaysfigure}
   \includegraphics[width=\textwidth]{ContWavltTrasf}
-  \caption{Continuous wavelet transform of the demand for the week August 01--07, 2016. The figure clearly shows the presence of a weekly periodic component in the demand at all airport under consideration.}\label{fig:cwt}
+  \caption{Continuous wavelet transform of the demand for the week August 01--07, 2016. The figure clearly shows the presence of a weekly periodic component in the demand at all airports under consideration.}\label{fig:cwt}
 \end{sidewaysfigure}
 
 \section{Correlations from regulated flight plan and \acs{PSRA} model}\label{sec:appb}
 
   Figure~\ref{fig:correlations_psra} shows the Pearson's correlation \(\rho_{t_i, t_{i+1}}\) between the simulated demand variation in the intervals \([t_i, t_{i+1})\) and \([t_{i+1}, t_{i+2})\). The simulated demand variation is obtained by subtracting the demand according to the regulated flight plan \(t^{r}\) from the demand simulated from Model~\eqref{Main-eq:psra-like}.
 
-  Comparing Figures~\ref{Main-fig:correlations_true} and~\ref{fig:correlations_psra}, we observe that the \ac{PSRA} model~\eqref{Main-eq:psra-like} captures very well this characteristic of the inbound flow.
+  Comparing Figures~\ref{Main-fig:correlations_true} and~\ref{fig:correlations_psra}, we observe that the \ac{PSRA} model~\eqref{Main-eq:psra-like} captures this characteristic of the inbound flow very well.
 
   \begin{sidewaysfigure}
       \includegraphics[width=\textwidth]{correlations_psra}
-      \caption{Correlations from simulation of Model~\eqref{Main-eq:psra-like}. Error bars show 95\% confidence interval for Pearson's \(\rho\).}
+      \caption{Correlations from simulation of Model~\eqref{Main-eq:psra-like}. Error bars show 95\% confidence intervals for Pearson's \(\rho\).}
       \label{fig:correlations_psra}
   \end{sidewaysfigure}
 
@@ -179,7 +179,7 @@ On the \(x\)-axis there is time and on the \(y\)-axis the scale parameter of the
   This appendix details the intensity function of the Poisson process obtained in Section~\ref{Main-sec:pois}.
   The intensity function is a periodic right-continuous step-function, which takes on value \(\hat{\lambda}\) between two consecutive values of \(\hat{t}\).
   The values of \(\hat{t}\) and \(\hat{\lambda}\) are reported for each airport by Table~\ref{tab:poisson_segmentation} below.
-  The table shows how the model correctly captures the typical hourly landing rate in the moments of highest demand, when we expect the airport to operate close to its maximum capacity. For \airp{lhr}, \(\lambda = 0.64\) aircraft/min corresponds to \(38.4\) aircraft/hour, which is close to the maximum declared capacity of 45; for \airp{fra}, \(\lambda = 0.90\) aircraft/min corresponds to \(54\) aircraft/hour, which is close to the maximum declared capacity of 60; finally, for \airp{ams}, \(\lambda = 1.13\) aircraft/min corresponds to \(67.8\) aircraft/hour, which is very close to the the maximum declared capacity of 68 (capacity data from \url{https://ext.eurocontrol.int/airport_corner_public/}).
+  The table shows how the model correctly captures the typical hourly landing rates in the moments of highest demand, when we expect the airport to operate close to its maximum capacity. For \airp{lhr}, \(\lambda = 0.64\) aircraft/min corresponds to \(38.4\) aircraft/hour, which is close to the maximum declared capacity of 45; for \airp{fra}, \(\lambda = 0.90\) aircraft/min corresponds to \(54\) aircraft/hour, which is close to the maximum declared capacity of 60; finally, for \airp{ams}, \(\lambda = 1.13\) aircraft/min corresponds to \(67.8\) aircraft/hour, which is very close to the the maximum declared capacity of 68 (capacity data from \url{https://ext.eurocontrol.int/airport_corner_public/}).
 
   \begin{center}
     \begin{longtable}{lll}
